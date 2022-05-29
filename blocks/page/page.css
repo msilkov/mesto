@@ -24,3 +24,11 @@
   margin: 0 auto 40px;
   width: 100%;
 }
+.page__content{
+  margin: 0 auto;
+  width: 100%;
+
+}
+.page__section{
+  margin: 0 auto 50px;
+}
