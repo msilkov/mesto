@@ -48,8 +48,14 @@ border: 2px solid #FFFFFF;
 background-image: url('../../images/edit-icon.svg');
 background-repeat: no-repeat;
 background-position: center;
-
+cursor: pointer;
+transition: all .5s;
 }
+
+.profile__edit-btn:hover{
+  opacity: 0.6;
+}
+
 .profile__add-btn {
 margin-left: auto;
 width: 150px;
@@ -59,4 +65,10 @@ border: 2px solid #FFFFFF;
 background-image: url('../../images/plus-icon.svg');
 background-repeat: no-repeat;
 background-position: center;
+cursor: pointer;
+transition: all .5s;
+
+}
+.profile__add-btn:hover{
+  opacity: 0.6;
 }
