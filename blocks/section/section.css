@@ -3,5 +3,6 @@
 }
 
 .section_size_narrow{
-  max-width: 880px;
+  max-width: 920px;
+  padding: 0 20px;
 }
