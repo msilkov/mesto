@@ -51,10 +51,6 @@ text-overflow: ellipsis;
  transition: all .5s;
 }
 
-.card__like-icon_active {
- background: #000;
-}
-
 .card__like-icon:hover{
   opacity: 0.6;
 }

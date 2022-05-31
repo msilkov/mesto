@@ -32,3 +32,8 @@
 .page__section{
   margin: 0 auto 50px;
 }
+
+.page__footer{
+  margin: 0 auto 60px;
+  width: 100%;
+}
