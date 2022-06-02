@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mesto - сайт о путешествиях</title>
+  <link rel="stylesheet" href="./pages/index.css" />
+</head>
+
+<body class="page">
+
+  <article class="popup">
+    <div class="popup__container">
+      <form class="popup__form">
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <label><input type="text" class="popup__field popup__field_type_name" placeholder="Ваше Имя" value="" /></label>
+        <label><input type="text" class="popup__field popup__field_type_profession" placeholder="Ваша профессия" value=""/></label>
+        <button type="submit" class="popup__submit-btn">Сохранить</button>
+        <button class="popup__close-btn"></button>
+      </form>
+    </div>
+  </article>
+
+  <div class="page__container">
+
+    <header class="header page__header section section_size_narrow">
+      <a href="#" class="logo">
+        <img src="./images/logo/logo.svg" alt="Место - Россия" class="logo__icon" />
+      </a>
+    </header>
+
+    <main class="content page__content">
+
+      <section class="profile section section_size_narrow page__section" aria-label="Секция профиль пользователя">
+
+        <div class="profile__avatar">
+          <img src="./images/avatars/avatar-01.jpg" alt="аватарка" class="profile__avatar-img" />
+        </div>
+        <div class="profile__info">
+          <p class="profile__name">Жак-Ив Кусто</p>
+          <p class="profile__desc">Исследователь океана</p>
+          <button class="profile__edit-btn"></button>
+        </div>
+        <button class="profile__add-btn"></button>
+
+      </section>
+
+      <section class="cards-layout section section_size_narrow page__section" aria-label="Блок с фотокарточками">
+
+        <article class="card">
+          <img src="./images/cards/karachaevsk.jpg" alt="Вид на монастырь в Карачаевске" class="card__image" />
+          <div class="card__description">
+            <h3 class="card__title">Карачаевск</h3>
+            <button class="card__like-btn"></button>
+          </div>
+        </article>
+        <article class="card">
+          <img src="./images/cards/elbrus.jpg" alt="Вид на Эльбрус" class="card__image" />
+          <div class="card__description">
+            <h3 class="card__title">Гора Эльбрус</h3>
+            <button class="card__like-btn"></button>
+          </div>
+        </article>
+        <article class="card">
+          <img src="./images/cards/dombay.jpg" alt="Вид на горы в Домбае" class="card__image" />
+          <div class="card__description">
+            <h3 class="card__title">Домбай</h3>
+            <button class="card__like-btn"></button>
+          </div>
+        </article>
+        <article class="card">
+          <img src="./images/cards/elbrus.jpg" alt="Вид на Эльбрус" class="card__image" />
+          <div class="card__description">
+            <h3 class="card__title">Гора Эльбрус</h3>
+            <button class="card__like-btn"></button>
+          </div>
+        </article>
+        <article class="card">
+          <img src="./images/cards/dombay.jpg" alt="Вид на горы в Домбае" class="card__image" />
+          <div class="card__description">
+            <h3 class="card__title">Домбай</h3>
+            <button class="card__like-btn"></button>
+          </div>
+        </article>
+        <article class="card">
+          <img src="./images/cards/karachaevsk.jpg" alt="Вид на монастырь в Карачаевске" class="card__image" />
+          <div class="card__description">
+            <h3 class="card__title">Карачаево-Черкесская республика</h3>
+            <button class="card__like-btn"></button>
+          </div>
+        </article>
+
+      </section>
+
+    </main>
+
+    <footer class="footer page__footer section section_size_narrow">
+      <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+    </footer>
+
+  </div> <!-- page container ending -->
+  <script src="./script/index.js"></script>
+</body>
+
+</html>
