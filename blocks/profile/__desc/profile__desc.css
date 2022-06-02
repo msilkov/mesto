@@ -1,0 +1,15 @@
+.profile__desc {
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 1.1;
+	color: #ffffff;
+	margin: 0;
+}
+@media screen and (max-width: 320px) {
+	.profile__desc {
+		line-height: 1.2;
+		margin-bottom: 33px;
+		font-size: 14px;
+		text-align: center;
+	}
+}

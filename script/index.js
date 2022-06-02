@@ -11,14 +11,15 @@ popupProfession.value = profileProfession.textContent;
 
 const popupOpen = function (e) {
 	e.preventDefault();
-	console.log("click");
 	popup.classList.add("popup_opened");
+  document.body.style.overflowY = 'hidden';
 };
 
 const popupClose = function (e) {
 	e.preventDefault();
-	console.log("click");
 	popup.classList.remove("popup_opened");
+  document.body.style.overflowY = 'auto';
+
 };
 
 const formSubmitHandler = function (e) {
@@ -26,6 +27,7 @@ const formSubmitHandler = function (e) {
 	profileName.textContent = popupName.value;
 	profileProfession.textContent = popupProfession.value;
 	popup.classList.remove("popup_opened");
+  document.body.style.overflowY = 'auto';
 };
 
 editButton.addEventListener("click", popupOpen);

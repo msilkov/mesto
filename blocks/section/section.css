@@ -2,13 +2,3 @@
   box-sizing: border-box;
 }
 
-.section_size_narrow{
-  max-width: 880px;
-  padding: 0;
-}
-@media screen and (max-width:320px) {
-  .section_size_narrow{
-  max-width: 920px;
-    padding: 0 20px;
-  }
-}
