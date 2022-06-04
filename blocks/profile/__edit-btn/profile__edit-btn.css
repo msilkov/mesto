@@ -1,13 +1,11 @@
 .profile__edit-btn {
-	position: absolute;
 	padding: 0;
-	top: 15px;
-	right: -19px;
-	transform: translateX(100%);
 	width: 24px;
 	height: 24px;
-	background-color: #000;
-	border: 1px solid #ffffff;
+	margin-left: 19px;
+	background-color: transparent;
+	border: none;
+	outline: none;
 	background-image: url("../../../images/icons/edit-icon.svg");
 	background-repeat: no-repeat;
 	background-position: center;
@@ -22,10 +20,11 @@
 
 @media screen and (max-width: 320px) {
 	.profile__edit-btn {
+		position: absolute;
 		width: 18px;
 		height: 18px;
-		top: 8px;
-		right: -10px;
+		margin-left: 10px;
+		top: 7px;
+		right: -28px;
 	}
 }
-

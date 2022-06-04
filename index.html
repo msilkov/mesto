@@ -13,12 +13,13 @@
 
   <article class="popup">
     <div class="popup__container">
-      <form class="popup__form">
+      <form name="edit-form" class="popup__form">
         <h3 class="popup__title">Редактировать профиль</h3>
-        <label><input type="text" class="popup__field popup__field_type_name" placeholder="Ваше Имя" value="" /></label>
-        <label><input type="text" class="popup__field popup__field_type_profession" placeholder="Ваша профессия" value=""/></label>
+        <input type="text" name="name" class="popup__field popup__field_type_name" placeholder="Ваше Имя" value="" />
+        <input type="text" name="profession" class="popup__field popup__field_type_profession"
+          placeholder="Ваша профессия" value="" />
         <button type="submit" class="popup__submit-btn">Сохранить</button>
-        <button class="popup__close-btn"></button>
+        <button type="reset" class="popup__close-btn"></button>
       </form>
     </div>
   </article>
@@ -35,15 +36,17 @@
 
       <section class="profile section section_size_narrow page__section" aria-label="Секция профиль пользователя">
 
-        <div class="profile__avatar">
-          <img src="./images/avatars/avatar-01.jpg" alt="аватарка" class="profile__avatar-img" />
-        </div>
+
+        <img src="./images/avatars/avatar-01.jpg" alt="аватарка" class="profile__avatar" />
+
         <div class="profile__info">
-          <p class="profile__name">Жак-Ив Кусто</p>
+          <div class="profile__name-wrapper">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button type="button" class="profile__edit-btn"></button>
+          </div>
           <p class="profile__desc">Исследователь океана</p>
-          <button class="profile__edit-btn"></button>
         </div>
-        <button class="profile__add-btn"></button>
+        <button type="submit" class="profile__add-btn"></button>
 
       </section>
 
@@ -52,43 +55,43 @@
         <article class="card">
           <img src="./images/cards/karachaevsk.jpg" alt="Вид на монастырь в Карачаевске" class="card__image" />
           <div class="card__description">
-            <h3 class="card__title">Карачаевск</h3>
-            <button class="card__like-btn"></button>
+            <h2 class="card__title">Карачаевск</h2>
+            <button type="submit" class="card__like-btn"></button>
           </div>
         </article>
         <article class="card">
           <img src="./images/cards/elbrus.jpg" alt="Вид на Эльбрус" class="card__image" />
           <div class="card__description">
-            <h3 class="card__title">Гора Эльбрус</h3>
-            <button class="card__like-btn"></button>
+            <h2 class="card__title">Гора Эльбрус</h2>
+            <button type="submit" class="card__like-btn"></button>
           </div>
         </article>
         <article class="card">
           <img src="./images/cards/dombay.jpg" alt="Вид на горы в Домбае" class="card__image" />
           <div class="card__description">
-            <h3 class="card__title">Домбай</h3>
-            <button class="card__like-btn"></button>
+            <h2 class="card__title">Домбай</h2>
+            <button type="submit" class="card__like-btn"></button>
           </div>
         </article>
         <article class="card">
           <img src="./images/cards/elbrus.jpg" alt="Вид на Эльбрус" class="card__image" />
           <div class="card__description">
-            <h3 class="card__title">Гора Эльбрус</h3>
-            <button class="card__like-btn"></button>
+            <h2 class="card__title">Гора Эльбрус</h2>
+            <button type="submit" class="card__like-btn"></button>
           </div>
         </article>
         <article class="card">
           <img src="./images/cards/dombay.jpg" alt="Вид на горы в Домбае" class="card__image" />
           <div class="card__description">
-            <h3 class="card__title">Домбай</h3>
-            <button class="card__like-btn"></button>
+            <h2 class="card__title">Домбай</h2>
+            <button type="submit" class="card__like-btn"></button>
           </div>
         </article>
         <article class="card">
           <img src="./images/cards/karachaevsk.jpg" alt="Вид на монастырь в Карачаевске" class="card__image" />
           <div class="card__description">
-            <h3 class="card__title">Карачаево-Черкесская республика</h3>
-            <button class="card__like-btn"></button>
+            <h2 class="card__title">Карачаево-Черкесская республика</h2>
+            <button type="submit" class="card__like-btn"></button>
           </div>
         </article>
 

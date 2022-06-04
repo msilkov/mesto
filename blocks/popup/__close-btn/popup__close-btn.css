@@ -4,7 +4,7 @@
 	transform: translate(100%, -100%);
 	position: absolute;
 	top: -8px;
-	right: -8px;
+	right: 12px;
 	background-color: transparent;
 	background-image: url("../../../images/icons/close-icon.svg");
 	background-position: center;
@@ -21,12 +21,12 @@
 	opacity: 0.6;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
 	.popup__close-btn {
 		width: 20px;
 		height: 20px;
 		transform: translate(0, -100%);
 		top: -16px;
-		right: 0;
+		right: 20px;
 	}
 }
