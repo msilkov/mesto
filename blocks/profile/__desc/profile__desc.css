@@ -45,5 +45,6 @@
 @media screen and (max-width: 320px) {
 	.profile__desc {
 		max-width: 220px;
+		font-size: 14px;
 	}
 }
