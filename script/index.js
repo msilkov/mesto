@@ -6,7 +6,7 @@ const popupName = popup.querySelector(".popup__field_type_name");
 const popupProfession = popup.querySelector(".popup__field_type_profession");
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__desc");
-
+// перемиеновать название сначала глагол
 const popupOpen = function (e) {
 	e.preventDefault();
 	popup.classList.add("popup_opened");
@@ -20,7 +20,7 @@ const popupClose = function (e) {
 	popup.classList.remove("popup_opened");
 	document.body.style.overflowY = "auto";
 };
-
+// rewrite personal data
 const formSubmitHandler = function (e) {
 	e.preventDefault();
 	profileName.textContent = popupName.value;
