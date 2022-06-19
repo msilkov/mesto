@@ -12,7 +12,6 @@ const popupEditProfession = popupEdit.querySelector(
 const popupEditCloseBtn = popupEdit.querySelector(".popup__close-btn");
 
 const popupAdd = document.querySelector(".popup_type_add-card");
-// const popupZoomImg = popup.querySelector(".popup");
 const popupAddCloseBtn = popupAdd.querySelector(".popup__close-btn");
 const popupAddForm = popupAdd.querySelector(".popup__form");
 const popupAddImgTitle = popupAddForm.querySelector(
@@ -21,9 +20,14 @@ const popupAddImgTitle = popupAddForm.querySelector(
 const popupAddImgLink = popupAddForm.querySelector(
 	".popup__field_type_img-link"
 );
+const popupZoom = document.querySelector(".popup_type_zoom-img");
+const popupZoomImg = popupZoom.querySelector(".popup__img");
+const popupZoomDesc = popupZoom.querySelector(".popup__img-desc");
+const popupZoomCloseBtn = popupZoom.querySelector(".popup__close-btn");
 
 const cardsLayout = document.querySelector(".cards-layout");
 const cardTemplate = document.querySelector(".card-template");
+
 const initialCards = [
 	{
 		name: "Байкал",
@@ -51,19 +55,40 @@ const initialCards = [
 		alt: "Вид на Эльбрус",
 	},
 	{
-		name: "Карачаевск",
-		link: "./images/cards/karachaevsk.jpg",
-		alt: "Вид на монастырь в Карачаевске",
+		name: "Рим",
+		link: "https://images.unsplash.com/photo-1569416078500-3857b00616f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1036&q=80",
+		alt: "Вид на узкую улицу Рима",
 	},
 ];
+
+const getCardByEvent = (e) => e.currentTarget.closest(".card");
+
+const openPopupZoom = () => {
+	openPopup(popupZoom);
+};
 
 const createCard = (obj) => {
 	const card = cardTemplate.content.cloneNode(true).querySelector(".card");
 	card.querySelector(".card__title").textContent = obj.name;
 	card.querySelector(".card__image").src = obj.link;
 	card.querySelector(".card__image").alt = obj.alt;
+	card.querySelector(".card__remove-btn").addEventListener("click", (e) => {
+		const card = getCardByEvent(e);
+		card.remove();
+	});
+	card.querySelector(".card__like-btn").addEventListener("click", (e) => {
+		const likeBtn = e.currentTarget;
+		likeBtn.classList.toggle("card__like-btn_active");
+	});
+	card.querySelector(".card__image").addEventListener("click", () => {
+		popupZoomDesc.textContent = card.querySelector(".card__title").textContent;
+		popupZoomImg.src = card.querySelector(".card__image").src;
+		openPopupZoom();
+	});
+
 	return card;
 };
+
 const addCard = (obj) => {
 	const card = createCard(obj);
 	cardsLayout.prepend(card);
@@ -99,6 +124,10 @@ const closePopupAdd = (e) => {
 	closePopup(popupAdd);
 };
 
+const closePopupZoom = () => {
+	closePopup(popupZoom);
+};
+
 const setProfileData = () => {
 	popupEditName.value = profileName.textContent;
 	popupEditProfession.value = profileProfession.textContent;
@@ -118,9 +147,13 @@ const handleSubmitCardAdd = (e) => {
 	card.name = popupAddImgTitle.value;
 	card.link = popupAddImgLink.value;
 	card.alt = popupAddImgTitle.value;
-	addCard(card);
-	closePopup(popupAdd);
-	popupAddForm.reset();
+	if (card.name === "" || card.link === "") {
+		alert("Введите данные");
+	} else {
+		addCard(card);
+		closePopup(popupAdd);
+		popupAddForm.reset();
+	}
 };
 
 profileEditBtn.addEventListener("click", openPopupEdit);
@@ -129,3 +162,4 @@ popupEditForm.addEventListener("submit", handleSubmitProfileEdit);
 profileAddBtn.addEventListener("click", openPopupAdd);
 popupAddCloseBtn.addEventListener("click", closePopupAdd);
 popupAddForm.addEventListener("submit", handleSubmitCardAdd);
+popupZoomCloseBtn.addEventListener("click", closePopupZoom);
