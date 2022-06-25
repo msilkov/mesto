@@ -57,6 +57,15 @@ const initialCards = [
 		alt: "Вид на узкую улицу Рима",
 	},
 ];
+const popups = document.querySelectorAll(".popup");
+
+popups.forEach((popup) => {
+	popup.addEventListener("click", (e) => {
+		if (e.target == popup) {
+			closePopup(popup);
+		}
+	});
+});
 
 const closeButtons = document.querySelectorAll(".popup__close-btn");
 closeButtons.forEach((button) => {
