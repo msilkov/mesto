@@ -9,10 +9,8 @@ const popupEditName = popupEdit.querySelector(".popup__field_type_name");
 const popupEditProfession = popupEdit.querySelector(
 	".popup__field_type_profession"
 );
-const popupEditCloseBtn = popupEdit.querySelector(".popup__close-btn");
 
 const popupAdd = document.querySelector(".popup_type_add-card");
-const popupAddCloseBtn = popupAdd.querySelector(".popup__close-btn");
 const popupAddForm = popupAdd.querySelector(".popup__form");
 const popupAddImgTitle = popupAddForm.querySelector(
 	".popup__field_type_img-title"
@@ -23,7 +21,6 @@ const popupAddImgLink = popupAddForm.querySelector(
 const popupZoom = document.querySelector(".popup_type_zoom-img");
 const popupZoomImg = popupZoom.querySelector(".popup__img");
 const popupZoomDesc = popupZoom.querySelector(".popup__img-desc");
-const popupZoomCloseBtn = popupZoom.querySelector(".popup__close-btn");
 
 const cardsLayout = document.querySelector(".cards-layout");
 const cardTemplate = document.querySelector(".card-template");
@@ -61,17 +58,23 @@ const initialCards = [
 	},
 ];
 
-const getCardByEvent = (e) => e.currentTarget.closest(".card");
+const closeButtons = document.querySelectorAll(".popup__close-btn");
+closeButtons.forEach((button) => {
+	const closestPopup = button.closest(".popup");
+	button.addEventListener("click", () => {
+		closePopup(closestPopup);
+	});
+});
 
-const openPopupZoom = () => {
-	openPopup(popupZoom);
-};
+const getCardByEvent = (e) => e.currentTarget.closest(".card");
 
 const createCard = (obj) => {
 	const card = cardTemplate.content.cloneNode(true).querySelector(".card");
-	card.querySelector(".card__title").textContent = obj.name;
-	card.querySelector(".card__image").src = obj.link;
-	card.querySelector(".card__image").alt = obj.alt;
+	const cardTitle = card.querySelector(".card__title");
+	const cardImg = card.querySelector(".card__image");
+	cardTitle.textContent = obj.name;
+	cardImg.src = obj.link;
+	cardImg.alt = obj.alt;
 	card.querySelector(".card__remove-btn").addEventListener("click", (e) => {
 		const card = getCardByEvent(e);
 		card.remove();
@@ -80,9 +83,10 @@ const createCard = (obj) => {
 		const likeBtn = e.currentTarget;
 		likeBtn.classList.toggle("card__like-btn_active");
 	});
-	card.querySelector(".card__image").addEventListener("click", () => {
-		popupZoomDesc.textContent = card.querySelector(".card__title").textContent;
-		popupZoomImg.src = card.querySelector(".card__image").src;
+	cardImg.addEventListener("click", () => {
+		popupZoomDesc.textContent = obj.name;
+		popupZoomImg.src = obj.link;
+		popupZoomImg.alt = obj.alt;
 		openPopupZoom();
 	});
 
@@ -98,11 +102,9 @@ initialCards.forEach(addCard);
 
 const openPopup = (popup) => {
 	popup.classList.add("popup_opened");
-	document.body.style.overflowY = "hidden";
 };
 const closePopup = (popup) => {
 	popup.classList.remove("popup_opened");
-	document.body.style.overflowY = "auto";
 };
 
 const openPopupEdit = (e) => {
@@ -110,22 +112,14 @@ const openPopupEdit = (e) => {
 	setProfileData();
 	openPopup(popupEdit);
 };
-const closePopupEdit = (e) => {
-	e.preventDefault();
-	closePopup(popupEdit);
-};
 
 const openPopupAdd = (e) => {
 	e.preventDefault();
 	openPopup(popupAdd);
 };
-const closePopupAdd = (e) => {
-	e.preventDefault();
-	closePopup(popupAdd);
-};
 
-const closePopupZoom = () => {
-	closePopup(popupZoom);
+const openPopupZoom = () => {
+	openPopup(popupZoom);
 };
 
 const setProfileData = () => {
@@ -138,7 +132,6 @@ const handleSubmitProfileEdit = (e) => {
 	profileName.textContent = popupEditName.value;
 	profileProfession.textContent = popupEditProfession.value;
 	closePopup(popupEdit);
-	document.body.style.overflowY = "auto";
 };
 
 const handleSubmitCardAdd = (e) => {
@@ -157,9 +150,6 @@ const handleSubmitCardAdd = (e) => {
 };
 
 profileEditBtn.addEventListener("click", openPopupEdit);
-popupEditCloseBtn.addEventListener("click", closePopupEdit);
 popupEditForm.addEventListener("submit", handleSubmitProfileEdit);
 profileAddBtn.addEventListener("click", openPopupAdd);
-popupAddCloseBtn.addEventListener("click", closePopupAdd);
 popupAddForm.addEventListener("submit", handleSubmitCardAdd);
-popupZoomCloseBtn.addEventListener("click", closePopupZoom);
