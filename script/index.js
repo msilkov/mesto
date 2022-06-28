@@ -1,3 +1,4 @@
+enableValidation();
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__desc");
