@@ -57,23 +57,9 @@ const initialCards = [
 		alt: "Вид на узкую улицу Рима",
 	},
 ];
+
 const popups = document.querySelectorAll(".popup");
-
-popups.forEach((popup) => {
-	popup.addEventListener("click", (e) => {
-		if (e.target == popup) {
-			closePopup(popup);
-		}
-	});
-});
-
 const closeButtons = document.querySelectorAll(".popup__close-btn");
-closeButtons.forEach((button) => {
-	const closestPopup = button.closest(".popup");
-	button.addEventListener("click", () => {
-		closePopup(closestPopup);
-	});
-});
 
 const getCardByEvent = (e) => e.currentTarget.closest(".card");
 
@@ -109,9 +95,31 @@ const addCard = (obj) => {
 
 initialCards.forEach(addCard);
 
+popups.forEach((popup) => {
+	popup.addEventListener("click", (e) => {
+		if (e.target == popup) {
+			closePopup(popup);
+		}
+	});
+});
+
+closeButtons.forEach((button) => {
+	const closestPopup = button.closest(".popup");
+	button.addEventListener("click", () => {
+		closePopup(closestPopup);
+	});
+});
+
 const openPopup = (popup) => {
 	popup.classList.add("popup_opened");
+	document.addEventListener("keydown", (e) => {
+		const key = e.key;
+		if (key === "Escape") {
+			closePopup(popup);
+		}
+	});
 };
+
 const closePopup = (popup) => {
 	popup.classList.remove("popup_opened");
 };
