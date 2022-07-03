@@ -1,4 +1,3 @@
-enableValidation();
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__desc");
@@ -6,18 +5,18 @@ const profileAddBtn = document.querySelector(".profile__add-btn");
 
 const popupEdit = document.querySelector(".popup_type_edit-profile");
 const popupEditForm = popupEdit.querySelector(".popup__form");
-const popupEditName = popupEdit.querySelector(".popup__field_type_name");
+const popupEditName = popupEdit.querySelector(".popup__input_type_name");
 const popupEditProfession = popupEdit.querySelector(
-	".popup__field_type_profession"
+	".popup__input_type_profession"
 );
 
 const popupAdd = document.querySelector(".popup_type_add-card");
 const popupAddForm = popupAdd.querySelector(".popup__form");
 const popupAddImgTitle = popupAddForm.querySelector(
-	".popup__field_type_img-title"
+	".popup__input_type_img-title"
 );
 const popupAddImgLink = popupAddForm.querySelector(
-	".popup__field_type_img-link"
+	".popup__input_type_img-link"
 );
 const popupZoom = document.querySelector(".popup_type_zoom-img");
 const popupZoomImg = popupZoom.querySelector(".popup__img");
@@ -171,3 +170,14 @@ profileEditBtn.addEventListener("click", openPopupEdit);
 popupEditForm.addEventListener("submit", handleSubmitProfileEdit);
 profileAddBtn.addEventListener("click", openPopupAdd);
 popupAddForm.addEventListener("submit", handleSubmitCardAdd);
+
+const config = {
+	formSelector: ".popup__form",
+	inputSelector: ".popup__input",
+	submitButtonSelector: ".popup__button",
+	inactiveButtonClass: "popup__button_disabled",
+	inputErrorClass: "popup__input_type_error",
+	errorClass: "popup__error_visible",
+};
+
+enableValidation();

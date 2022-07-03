@@ -1,7 +1,6 @@
-.popup__field {
+.popup__input {
 	box-sizing: border-box;
 	width: 100%;
-	margin: 0 0 30px;
 	padding: 0 0 8px 0;
 	border: none;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -10,8 +9,9 @@
 	font-size: 14px;
 	line-height: 1.1;
 	color: #000;
+	transition: all .5s;
 }
-.popup__field::placeholder {
+.popup__input::placeholder {
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 1.1;
