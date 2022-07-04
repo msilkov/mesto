@@ -15,17 +15,16 @@
     <div class="popup__container">
       <form name="edit-form" class="popup__form">
         <h3 class="popup__title">Редактировать профиль</h3>
-        <label>
+        <fieldset class="popup__input-group">
           <input id="name-input" type="text" name="name" class="popup__input popup__input_type_name"
             placeholder="Ваше Имя" value="" minlength="2" maxlength="40" required />
-          <span id="name-input-error" class="name-input-error popup__input-error"></span>
-        </label>
-
-
-        <input id="prof-input" type="text" name="profession" class="popup__input popup__input_type_profession"
-          placeholder="Ваша профессия" value="" minlength="2" maxlength="200" required />
-        <span id="prof-input-error" class="prof-input-error popup__input-error"></span>
-
+          <span id="name-input-error" class="name-input-error popup__input-error">_</span>
+        </fieldset>
+        <fieldset class="popup__input-group">
+          <input id="prof-input" type="text" name="profession" class="popup__input popup__input_type_profession"
+            placeholder="Ваша профессия" value="" minlength="2" maxlength="200" required />
+          <span id="prof-input-error" class="prof-input-error popup__input-error">_</span>
+        </fieldset>
         <button type="submit" class="popup__submit-btn">Сохранить</button>
         <button type="reset" class="popup__close-btn"></button>
       </form>
@@ -36,18 +35,16 @@
     <div class="popup__container">
       <form name="edit-form" class="popup__form">
         <h3 class="popup__title">Новое место</h3>
-        <label class="popup__input-group">
+        <fieldset class="popup__input-group">
           <input id="place-input" type="text" name="newplace" class="popup__input popup__input_type_img-title"
             placeholder="Название" value="" minlength="2" maxlength="30" />
-          <span id="place-input-error" class="place-input-error popup__input-error">jib,rf</span>
-        </label>
-        <label class="popup__input-group">
+          <span id="place-input-error" class="place-input-error popup__input-error">_</span>
+        </fieldset>
+        <fieldset class="popup__input-group">
           <input id="img-input" type="text" name="placeimg" class="popup__input popup__input_type_img-link"
             placeholder="Ссылка на картинку" value="" pattern="https?://.+" />
-          <span id="img-input-error" class="img-input-error popup__input-error">gfg</span>
-        </label>
-
-
+          <span id="img-input-error" class="img-input-error popup__input-error">_</span>
+        </fieldset>
         <button type="submit" class="popup__submit-btn">Создать</button>
         <button type="reset" class="popup__close-btn"></button>
       </form>

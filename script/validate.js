@@ -1,15 +1,15 @@
 const showInputError = (formElement, inputElement) => {
 	const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-	inputElement.classList.add("popup__field_active");
-	errorElement.classList.add("popup__field-error_active");
+	inputElement.classList.add("popup__input_type_error");
+	errorElement.classList.add("popup__input-error_active");
 	errorElement.textContent = inputElement.validationMessage;
 };
 
 const hideInputError = (formElement, inputElement) => {
 	const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-	inputElement.classList.remove("popup__field_active");
-	errorElement.classList.remove("popup__field-error_active");
-	errorElement.textContent = "";
+	inputElement.classList.remove("popup__input_type_error");
+	errorElement.classList.remove("popup__input-error_active");
+	errorElement.textContent = "_";
 };
 
 const checkInputValidity = (formElement, inputElement) => {
@@ -20,7 +20,7 @@ const checkInputValidity = (formElement, inputElement) => {
 	}
 };
 const includeInvalidInput = (inputList) => {
-	return inputList.some(inputElement => !inputElement.validity.valid);
+	return inputList.some((inputElement) => !inputElement.validity.valid);
 };
 
 const toggleButtonState = (buttonElement, inputList) => {
@@ -32,8 +32,7 @@ const toggleButtonState = (buttonElement, inputList) => {
 };
 
 const setEventListeners = (formElement) => {
-
-	const inputList = Array.from(formElement.querySelectorAll(".popup__field"));
+	const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
 
 	const buttonElement = formElement.querySelector(".popup__submit-btn");
 

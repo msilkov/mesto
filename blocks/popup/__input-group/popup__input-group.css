@@ -1,3 +1,8 @@
 .popup__input-group{
-  display: block;
+  padding: 0;
+  border: none;
+  margin:0 0 12px 0;
+}
+.popup__input-group:last-of-type{
+  margin:0 0 27px 0;
 }
