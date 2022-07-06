@@ -1,5 +1,6 @@
 .popup__input {
 	box-sizing: border-box;
+	max-width: 358px;
 	width: 100%;
 	padding: 0 0 8px 0;
 	border: none;

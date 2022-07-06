@@ -110,17 +110,24 @@ closeButtons.forEach((button) => {
 	});
 });
 
-const openPopup = (popup) => {
-	popup.classList.add("popup_opened");
-	document.addEventListener("keydown", (e) => {
-		const key = e.key;
-		if (key === "Escape") {
-			closePopup(popup);
-		}
-	});
+const closeByEsc = function (e) {
+	const closestPopup = document.querySelector(".popup_opened");
+	if (e.key === "Escape") {
+		closePopup(closestPopup);
+	}
 };
 
+const openPopup = (popup) => {
+	popup.classList.add("popup_opened");
+	document.addEventListener("keydown", closeByEsc);
+	const submitButton = popup.querySelector(".popup__submit-btn");
+	const inputList = Array.from(popup.querySelectorAll(".popup__input"));
+	if (!popup.classList.contains("popup_type_zoom-img")) {
+		toggleButtonState(submitButton, inputList);
+	}
+};
 const closePopup = (popup) => {
+	document.removeEventListener("keydown", closeByEsc);
 	popup.classList.remove("popup_opened");
 };
 
@@ -157,13 +164,9 @@ const handleSubmitCardAdd = (e) => {
 	card.name = popupAddImgTitle.value;
 	card.link = popupAddImgLink.value;
 	card.alt = popupAddImgTitle.value;
-	if (card.name === "" || card.link === "") {
-		alert("Введите данные");
-	} else {
-		addCard(card);
-		closePopup(popupAdd);
-		popupAddForm.reset();
-	}
+	addCard(card);
+	closePopup(popupAdd);
+	popupAddForm.reset();
 };
 
 profileEditBtn.addEventListener("click", openPopupEdit);
@@ -171,13 +174,14 @@ popupEditForm.addEventListener("submit", handleSubmitProfileEdit);
 profileAddBtn.addEventListener("click", openPopupAdd);
 popupAddForm.addEventListener("submit", handleSubmitCardAdd);
 
-const config = {
+const ValidationConfig = {
 	formSelector: ".popup__form",
 	inputSelector: ".popup__input",
 	submitButtonSelector: ".popup__submit-btn",
 	inactiveButtonClass: "popup__button_disabled",
 	inputErrorClass: "popup__input_type_error",
-	errorClass: "popup__error_visible",
+	errorClass: "popup__input-error",
+	errorClassActive: "popup__input-error_active",
 };
 
-enableValidation();
+enableValidation(ValidationConfig);
