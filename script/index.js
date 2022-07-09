@@ -9,6 +9,10 @@ const popupEditName = popupEdit.querySelector(".popup__input_type_name");
 const popupEditProfession = popupEdit.querySelector(
 	".popup__input_type_profession"
 );
+const popupEditSubmitBtn = popupEdit.querySelector(".popup__submit-btn");
+const popupEditInputList = Array.from(
+	popupEdit.querySelectorAll(".popup__input")
+);
 
 const popupAdd = document.querySelector(".popup_type_add-card");
 const popupAddForm = popupAdd.querySelector(".popup__form");
@@ -18,45 +22,17 @@ const popupAddImgTitle = popupAddForm.querySelector(
 const popupAddImgLink = popupAddForm.querySelector(
 	".popup__input_type_img-link"
 );
+const popupAddSubmitBtn = popupAdd.querySelector(".popup__submit-btn");
+const popupAddInputList = Array.from(
+	popupAdd.querySelectorAll(".popup__input")
+);
+
 const popupZoom = document.querySelector(".popup_type_zoom-img");
 const popupZoomImg = popupZoom.querySelector(".popup__img");
 const popupZoomDesc = popupZoom.querySelector(".popup__img-desc");
 
 const cardsLayout = document.querySelector(".cards-layout");
 const cardTemplate = document.querySelector(".card-template");
-
-const initialCards = [
-	{
-		name: "Байкал",
-		link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-		alt: "Байкал",
-	},
-	{
-		name: "Камчатка",
-		link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-		alt: "Камчатка",
-	},
-	{
-		name: "Карачаево-Черкесская республика",
-		link: "./images/cards/karachaevsk.jpg",
-		alt: "Вид на монастырь в Карачаевске",
-	},
-	{
-		name: "Домбай",
-		link: "./images/cards/dombay.jpg",
-		alt: "Вид на горы в Домбае",
-	},
-	{
-		name: "Гора Эльбрус",
-		link: "./images/cards/elbrus.jpg",
-		alt: "Вид на Эльбрус",
-	},
-	{
-		name: "Рим",
-		link: "https://images.unsplash.com/photo-1569416078500-3857b00616f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1036&q=80",
-		alt: "Вид на узкую улицу Рима",
-	},
-];
 
 const popups = document.querySelectorAll(".popup");
 const closeButtons = document.querySelectorAll(".popup__close-btn");
@@ -96,8 +72,9 @@ const addCard = (obj) => {
 initialCards.forEach(addCard);
 
 popups.forEach((popup) => {
+	const popupContainer = popup.querySelector(".popup__container");
 	popup.addEventListener("click", (e) => {
-		if (e.target == popup) {
+		if (e.target == popup || e.target == popupContainer) {
 			closePopup(popup);
 		}
 	});
@@ -111,8 +88,8 @@ closeButtons.forEach((button) => {
 });
 
 const closeByEsc = function (e) {
-	const closestPopup = document.querySelector(".popup_opened");
 	if (e.key === "Escape") {
+		const closestPopup = document.querySelector(".popup_opened");
 		closePopup(closestPopup);
 	}
 };
@@ -120,11 +97,6 @@ const closeByEsc = function (e) {
 const openPopup = (popup) => {
 	popup.classList.add("popup_opened");
 	document.addEventListener("keydown", closeByEsc);
-	const submitButton = popup.querySelector(".popup__submit-btn");
-	const inputList = Array.from(popup.querySelectorAll(".popup__input"));
-	if (!popup.classList.contains("popup_type_zoom-img")) {
-		toggleButtonState(submitButton, inputList);
-	}
 };
 const closePopup = (popup) => {
 	document.removeEventListener("keydown", closeByEsc);
@@ -134,11 +106,13 @@ const closePopup = (popup) => {
 const openPopupEdit = (e) => {
 	e.preventDefault();
 	setProfileData();
+	toggleButtonState(popupEditSubmitBtn, popupEditInputList);
 	openPopup(popupEdit);
 };
 
 const openPopupAdd = (e) => {
 	e.preventDefault();
+	toggleButtonState(popupAddSubmitBtn, popupAddInputList);
 	openPopup(popupAdd);
 };
 
@@ -174,7 +148,7 @@ popupEditForm.addEventListener("submit", handleSubmitProfileEdit);
 profileAddBtn.addEventListener("click", openPopupAdd);
 popupAddForm.addEventListener("submit", handleSubmitCardAdd);
 
-const ValidationConfig = {
+const validationConfig = {
 	formSelector: ".popup__form",
 	inputSelector: ".popup__input",
 	submitButtonSelector: ".popup__submit-btn",
@@ -184,4 +158,4 @@ const ValidationConfig = {
 	errorClassActive: "popup__input-error_active",
 };
 
-enableValidation(ValidationConfig);
+enableValidation(validationConfig);
