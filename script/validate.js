@@ -63,3 +63,6 @@ const enableValidation = (config) => {
 		setEventListeners(formElement, config);
 	});
 };
+
+
+export {enableValidation,toggleButtonState}

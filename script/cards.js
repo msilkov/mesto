@@ -30,3 +30,5 @@ const initialCards = [
 		alt: "Вид на узкую улицу Рима",
 	},
 ];
+
+export {initialCards}
