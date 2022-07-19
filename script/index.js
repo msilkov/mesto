@@ -25,38 +25,15 @@ import {
 	getCardByEvent,
 } from "./data.js";
 import { initialCards } from "./cards.js";
+import { enableValidation, toggleButtonState } from "./validate.js";
+import { Card } from "./Card.js";
 
-const createCard = (obj) => {
-	const card = cardTemplate.content.cloneNode(true).querySelector(".card");
-	const cardTitle = card.querySelector(".card__title");
-	const cardImg = card.querySelector(".card__image");
-	cardTitle.textContent = obj.name;
-	cardImg.src = obj.link;
-	cardImg.alt = obj.alt;
-	card.querySelector(".card__remove-btn").addEventListener("click", (e) => {
-		const card = getCardByEvent(e);
-		card.remove();
-	});
-	card.querySelector(".card__like-btn").addEventListener("click", (e) => {
-		const likeBtn = e.currentTarget;
-		likeBtn.classList.toggle("card__like-btn_active");
-	});
-	cardImg.addEventListener("click", () => {
-		popupZoomDesc.textContent = obj.name;
-		popupZoomImg.src = obj.link;
-		popupZoomImg.alt = obj.alt;
-		openPopupZoom();
-	});
-
-	return card;
+const renderCard = (obj) => {
+	const card = new Card(obj, ".card-template");
+	cardsLayout.prepend(card.generateCard());
 };
 
-const addCard = (obj) => {
-	const card = createCard(obj);
-	cardsLayout.prepend(card);
-};
-
-initialCards.forEach(addCard);
+initialCards.forEach(renderCard);
 
 popups.forEach((popup) => {
 	const popupContainer = popup.querySelector(".popup__container");
@@ -85,6 +62,7 @@ const openPopup = (popup) => {
 	popup.classList.add("popup_opened");
 	document.addEventListener("keydown", closeByEsc);
 };
+
 const closePopup = (popup) => {
 	document.removeEventListener("keydown", closeByEsc);
 	popup.classList.remove("popup_opened");
@@ -125,7 +103,7 @@ const handleSubmitCardAdd = (e) => {
 	card.name = popupAddImgTitle.value;
 	card.link = popupAddImgLink.value;
 	card.alt = popupAddImgTitle.value;
-	addCard(card);
+	renderCard(card);
 	closePopup(popupAdd);
 	popupAddForm.reset();
 };
@@ -145,6 +123,6 @@ const validationConfig = {
 	errorClassActive: "popup__input-error_active",
 };
 
-import { enableValidation, toggleButtonState } from "./validate.js";
-
 enableValidation(validationConfig);
+
+export { openPopupZoom };
