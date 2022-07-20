@@ -23,6 +23,7 @@ import {
 	popups,
 	closeButtons,
 	getCardByEvent,
+	validationConfig,
 } from "./data.js";
 import { initialCards } from "./cards.js";
 import { enableValidation, toggleButtonState } from "./validate.js";
@@ -113,15 +114,7 @@ popupEditForm.addEventListener("submit", handleSubmitProfileEdit);
 profileAddBtn.addEventListener("click", openPopupAdd);
 popupAddForm.addEventListener("submit", handleSubmitCardAdd);
 
-const validationConfig = {
-	formSelector: ".popup__form",
-	inputSelector: ".popup__input",
-	submitButtonSelector: ".popup__submit-btn",
-	inactiveButtonClass: "popup__button_disabled",
-	inputErrorClass: "popup__input_type_error",
-	errorClass: "popup__input-error",
-	errorClassActive: "popup__input-error_active",
-};
+
 
 enableValidation(validationConfig);
 

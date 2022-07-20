@@ -38,6 +38,16 @@ const popups = document.querySelectorAll(".popup");
 const closeButtons = document.querySelectorAll(".popup__close-btn");
 const getCardByEvent = (e) => e.currentTarget.closest(".card");
 
+const validationConfig = {
+	formSelector: ".popup__form",
+	inputSelector: ".popup__input",
+	submitButtonSelector: ".popup__submit-btn",
+	inactiveButtonClass: "popup__button_disabled",
+	inputErrorClass: "popup__input_type_error",
+	errorClass: "popup__input-error",
+	errorClassActive: "popup__input-error_active",
+};
+
 export {
 	profileEditBtn,
 	profileName,
@@ -63,4 +73,5 @@ export {
 	popups,
 	closeButtons,
 	getCardByEvent,
+	validationConfig,
 };
