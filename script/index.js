@@ -26,8 +26,13 @@ import {
 	validationConfig,
 } from "./data.js";
 import { initialCards } from "./cards.js";
-import { enableValidation, toggleButtonState } from "./validate.js";
 import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+
+const popupEditValidator = new FormValidator(validationConfig, popupEditForm);
+popupEditValidator.enableValidation();
+const popupAddValidator = new FormValidator(validationConfig, popupAddForm);
+popupAddValidator.enableValidation();
 
 const renderCard = (obj) => {
 	const card = new Card(obj, ".card-template");
@@ -72,13 +77,13 @@ const closePopup = (popup) => {
 const openPopupEdit = (e) => {
 	e.preventDefault();
 	setProfileData();
-	toggleButtonState(popupEditSubmitBtn, popupEditInputList);
+	popupEditValidator.toggleButtonState(popupEditSubmitBtn, popupEditInputList);
 	openPopup(popupEdit);
 };
 
 const openPopupAdd = (e) => {
 	e.preventDefault();
-	toggleButtonState(popupAddSubmitBtn, popupAddInputList);
+	popupAddValidator.toggleButtonState(popupAddSubmitBtn, popupAddInputList);
 	openPopup(popupAdd);
 };
 
@@ -113,9 +118,5 @@ profileEditBtn.addEventListener("click", openPopupEdit);
 popupEditForm.addEventListener("submit", handleSubmitProfileEdit);
 profileAddBtn.addEventListener("click", openPopupAdd);
 popupAddForm.addEventListener("submit", handleSubmitCardAdd);
-
-
-
-enableValidation(validationConfig);
 
 export { openPopupZoom };
