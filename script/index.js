@@ -34,9 +34,24 @@ popupEditValidator.enableValidation();
 const popupAddValidator = new FormValidator(validationConfig, popupAddForm);
 popupAddValidator.enableValidation();
 
+const openCardPopupZoom = (name, link, alt) => {
+	popupZoomDesc.textContent = name;
+	popupZoomImg.src = link;
+	popupZoomImg.alt = alt;
+	openPopupZoom();
+};
+
+const createCard = (obj) => {
+	const card = new Card(
+		obj,
+		".card-template",
+		openCardPopupZoom
+	).generateCard();
+	return card;
+};
+
 const renderCard = (obj) => {
-	const card = new Card(obj, ".card-template");
-	cardsLayout.prepend(card.generateCard());
+	cardsLayout.prepend(createCard(obj));
 };
 
 initialCards.forEach(renderCard);
@@ -74,16 +89,15 @@ const closePopup = (popup) => {
 	popup.classList.remove("popup_opened");
 };
 
-const openPopupEdit = (e) => {
-	e.preventDefault();
+const openPopupEdit = () => {
 	setProfileData();
-	popupEditValidator.toggleButtonState(popupEditSubmitBtn, popupEditInputList);
+	popupEditValidator.resetValiadtion();
 	openPopup(popupEdit);
 };
 
 const openPopupAdd = (e) => {
 	e.preventDefault();
-	popupAddValidator.toggleButtonState(popupAddSubmitBtn, popupAddInputList);
+	popupAddValidator.resetValiadtion();
 	openPopup(popupAdd);
 };
 
