@@ -1,6 +1,3 @@
-import { getCardByEvent, popupZoomDesc, popupZoomImg } from "./data.js";
-import { openPopupZoom } from "./index.js";
-
 class Card {
 	constructor(obj, cardSelector, openCardPopupZoom) {
 		this._name = obj.name;
@@ -53,14 +50,9 @@ class Card {
 		this._element.remove();
 		this._element = null;
 	}
+
 	_setCardLike() {
 		this._likeBtn.classList.toggle("card__like-btn_active");
 	}
-	// _openCardPopupZoom() {
-	// 	popupZoomDesc.textContent = this._name;
-	// 	popupZoomImg.src = this._link;
-	// 	popupZoomImg.alt = this._alt;
-	// 	openPopupZoom();
-	// }
 }
 export { Card };

@@ -7,22 +7,16 @@ import {
 	popupEditForm,
 	popupEditName,
 	popupEditProfession,
-	popupEditSubmitBtn,
-	popupEditInputList,
 	popupAdd,
 	popupAddForm,
 	popupAddImgTitle,
 	popupAddImgLink,
-	popupAddSubmitBtn,
-	popupAddInputList,
 	popupZoom,
 	popupZoomImg,
 	popupZoomDesc,
 	cardsLayout,
-	cardTemplate,
 	popups,
 	closeButtons,
-	getCardByEvent,
 	validationConfig,
 } from "./data.js";
 import { initialCards } from "./cards.js";
@@ -133,4 +127,3 @@ popupEditForm.addEventListener("submit", handleSubmitProfileEdit);
 profileAddBtn.addEventListener("click", openPopupAdd);
 popupAddForm.addEventListener("submit", handleSubmitCardAdd);
 
-export { openPopupZoom };
