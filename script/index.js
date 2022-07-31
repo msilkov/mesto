@@ -36,34 +36,32 @@ const openCardPopupZoom = (name, link, alt) => {
 	openPopupZoom();
 };
 
-// const createCard = (obj) => {
-// 	const card = new Card(
-// 		obj,
-// 		".card-template",
-// 		openCardPopupZoom
-// 	).generateCard();
-// 	return card;
-// };
+const createCard = (obj) => {
+	const card = new Card(
+		obj,
+		".card-template",
+		openCardPopupZoom
+	).generateCard();
+	return card;
+};
 
-// const renderCard = (obj) => {
-// 	cardsLayout.prepend(createCard(obj));
-// };
+const renderCard = (obj) => {
+	cardsLayout.prepend(createCard(obj));
+};
 
-// initialCards.forEach(renderCard);
-
-const cardsList = new Section(
+const initialCardsList = new Section(
 	{
 		data: initialCards,
 		renderer: (cardItem) => {
 			const card = new Card(cardItem, ".card-template", openCardPopupZoom);
 			const cardElement = card.generateCard();
-			cardsList.addItem(cardElement);
+			initialCardsList.addItem(cardElement);
 		},
 	},
 	".cards-layout"
 );
 
-cardsList.renderItems();
+initialCardsList.renderItems();
 
 popups.forEach((popup) => {
 	const popupContainer = popup.querySelector(".popup__container");
