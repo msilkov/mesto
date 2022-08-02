@@ -31,19 +31,19 @@ const popupAddValidator = new FormValidator(validationConfig, popupAddForm);
 popupAddValidator.enableValidation();
 
 const popupWithImg = new PopupWithImage(".popup_type_zoom-img");
-
-const openCardPopupZoom = (name, link, alt) => {
+console.log(popupWithImg);
+const handleCardClick = (name, link, alt) => {
 	popupZoomDesc.textContent = name;
 	popupZoomImg.src = link;
 	popupZoomImg.alt = alt;
-	popupWithImg.openPopup()
+	popupWithImg.openPopup(name,link,alt)
 };
 
 const createCard = (obj) => {
 	const card = new Card(
 		obj,
 		".card-template",
-		openCardPopupZoom
+		handleCardClick
 	).generateCard();
 	return card;
 };
@@ -56,7 +56,7 @@ const initialCardsList = new Section(
 	{
 		data: initialCards,
 		renderer: (cardItem) => {
-			const card = new Card(cardItem, ".card-template", openCardPopupZoom);
+			const card = new Card(cardItem, ".card-template", handleCardClick);
 			const cardElement = card.generateCard();
 			initialCardsList.addItem(cardElement);
 		},

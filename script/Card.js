@@ -1,10 +1,10 @@
 class Card {
-	constructor(obj, cardSelector, openCardPopupZoom) {
+	constructor(obj, cardSelector, handleCardClick) {
 		this._name = obj.name;
 		this._link = obj.link;
 		this._alt = obj.alt;
 		this._cardSelector = cardSelector;
-		this._openCardPopupZoom = openCardPopupZoom;
+		this._handleCardClick = handleCardClick;
 	}
 
 	_getTemplate() {
@@ -39,10 +39,10 @@ class Card {
 		});
 
 		this._cardImg.addEventListener("click", () => {
-			this._openCardPopupZoom();
+			this._handleCardClick();
 		});
 		this._cardImg.addEventListener("click", () => {
-			this._openCardPopupZoom(this._name, this._link, this._alt);
+			this._handleCardClick(this._name, this._link, this._alt);
 		});
 	}
 
