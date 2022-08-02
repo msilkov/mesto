@@ -23,13 +23,13 @@ export default class Popup {
 		}
 	}
 	setEventListeners() {
-		this._popup.addEventListener("click", this._handleOverlayClose());
-		this._closeBtn.addEventListener("click", this.closePopup());
-		document.addEventListener("keydown", this._handleEscClose());
+		this._popup.addEventListener("click", this._handleOverlayClose.bind(this));
+		this._closeBtn.addEventListener("click", this.closePopup.bind(this));
+		document.addEventListener("keydown", this._handleEscClose.bind(this));
 	}
 	removeEventListeners() {
-		this._popup.removeEventListener("click", this._handleOverlayClose());
-		this._closeBtn.removeEventListener("click", this.closePopup());
-		document.removeEventListener("keydown", this._handleEscClose());
+		this._popup.removeEventListener("click", this._handleOverlayClose.bind(this));
+		this._closeBtn.removeEventListener("click", this.closePopup.bind(this));
+		document.removeEventListener("keydown", this._handleEscClose.bind(this));
 	}
 }
