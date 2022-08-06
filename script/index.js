@@ -32,14 +32,11 @@ popupEditValidator.enableValidation();
 const popupAddValidator = new FormValidator(validationConfig, popupAddForm);
 popupAddValidator.enableValidation();
 
-const setProfileData = new UserInfo({
-	profileName: ".profile__name",
-	profileDescription: ".profile__desc",
-});
+const profileInfo = new UserInfo(".profile__name", ".profile__desc");
 
 const profileEditor = new PopupWithForm(".popup_type_edit-profile", {
 	handleFormSubmit: (formData) => {
-		setProfileData.setUserInfo(formData);
+		profileInfo.setUserInfo(formData);
 		profileEditor.closePopup();
 	},
 });
@@ -81,10 +78,13 @@ const initialCardsList = new Section(
 initialCardsList.renderItems();
 
 profileEditBtn.addEventListener("click", () => {
-	popupAddValidator.resetValiadtion();
-	setProfileData.getUserInfo();
+	const profData = profileInfo.getUserInfo();
+	popupEditName.value = profData.name;
+	popupEditProfession.value = profData.description;
+	popupEditValidator.resetValiadtion();
 	profileEditor.openPopup();
 });
+
 profileAddBtn.addEventListener("click", () => {
 	popupAddValidator.resetValiadtion();
 	newCardRenderer.openPopup();
