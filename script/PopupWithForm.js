@@ -13,21 +13,19 @@ export default class PopupWithForm extends Popup {
 
 		this._formValues = {};
 
-		this._inputList.forEach(input => {
+		this._inputList.forEach((input) => {
 			this._formValues[input.name] = input.value;
 		});
-		console.log(this._formValues);
 		return this._formValues;
 	}
 	setEventListeners() {
 		//  add submit handler добавлять обработчик сабмита формы.
-		super.setEventListeners();
 		this._form.addEventListener("submit", (e) => {
 			e.preventDefault();
-			console.log(this._getInputValues());
 			this.handleFormSubmit(this._getInputValues());
 			this._form.reset();
 		});
+		super.setEventListeners();
 	}
 	closePopup() {
 		//close popup and reset form

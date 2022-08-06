@@ -1,6 +1,6 @@
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const profileName = document.querySelector(".profile__name");
-const profileProfession = document.querySelector(".profile__desc");
+const profileDescription = document.querySelector(".profile__desc");
 const profileAddBtn = document.querySelector(".profile__add-btn");
 
 const popupEdit = document.querySelector(".popup_type_edit-profile");
@@ -51,7 +51,7 @@ const validationConfig = {
 export {
 	profileEditBtn,
 	profileName,
-	profileProfession,
+	profileDescription,
 	profileAddBtn,
 	popupEdit,
 	popupEditForm,

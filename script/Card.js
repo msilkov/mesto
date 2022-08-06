@@ -39,9 +39,6 @@ class Card {
 		});
 
 		this._cardImg.addEventListener("click", () => {
-			this._handleCardClick();
-		});
-		this._cardImg.addEventListener("click", () => {
 			this._handleCardClick(this._name, this._link, this._alt);
 		});
 	}
