@@ -1,7 +1,7 @@
 import {
 	profileEditBtn,
 	profileName,
-	profileProfession,
+	profileDescription,
 	profileAddBtn,
 	popupEdit,
 	popupEditForm,
@@ -22,25 +22,40 @@ import {
 import { initialCards } from "./cards.js";
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import Section from "./Section.js";
+import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
+import UserInfo from "./UserInfo.js";
 
 const popupEditValidator = new FormValidator(validationConfig, popupEditForm);
 popupEditValidator.enableValidation();
 const popupAddValidator = new FormValidator(validationConfig, popupAddForm);
 popupAddValidator.enableValidation();
 
-const openCardPopupZoom = (name, link, alt) => {
-	popupZoomDesc.textContent = name;
-	popupZoomImg.src = link;
-	popupZoomImg.alt = alt;
-	openPopupZoom();
+const profileInfo = new UserInfo(".profile__name", ".profile__desc");
+
+const profileEditor = new PopupWithForm(".popup_type_edit-profile", {
+	handleFormSubmit: (formData) => {
+		profileInfo.setUserInfo(formData);
+		profileEditor.closePopup();
+	},
+});
+
+const newCardRenderer = new PopupWithForm(".popup_type_add-card", {
+	handleFormSubmit: (formData) => {
+		renderCard(formData);
+		newCardRenderer.closePopup();
+	},
+});
+
+const cardImgZoom = new PopupWithImage(".popup_type_zoom-img");
+
+const handleCardClick = (name, link, alt) => {
+	cardImgZoom.openPopup(name, link, alt);
 };
 
 const createCard = (obj) => {
-	const card = new Card(
-		obj,
-		".card-template",
-		openCardPopupZoom
-	).generateCard();
+	const card = new Card(obj, ".card-template", handleCardClick).generateCard();
 	return card;
 };
 
@@ -48,82 +63,29 @@ const renderCard = (obj) => {
 	cardsLayout.prepend(createCard(obj));
 };
 
-initialCards.forEach(renderCard);
+const initialCardsList = new Section(
+	{
+		data: initialCards,
+		renderer: (cardItem) => {
+			const card = new Card(cardItem, ".card-template", handleCardClick);
+			const cardElement = card.generateCard();
+			initialCardsList.addItem(cardElement);
+		},
+	},
+	".cards-layout"
+);
 
-popups.forEach((popup) => {
-	const popupContainer = popup.querySelector(".popup__container");
-	popup.addEventListener("click", (e) => {
-		if (e.target == popup || e.target == popupContainer) {
-			closePopup(popup);
-		}
-	});
-});
+initialCardsList.renderItems();
 
-closeButtons.forEach((button) => {
-	const closestPopup = button.closest(".popup");
-	button.addEventListener("click", () => {
-		closePopup(closestPopup);
-	});
-});
-
-const closeByEsc = function (e) {
-	if (e.key === "Escape") {
-		const closestPopup = document.querySelector(".popup_opened");
-		closePopup(closestPopup);
-	}
-};
-
-const openPopup = (popup) => {
-	popup.classList.add("popup_opened");
-	document.addEventListener("keydown", closeByEsc);
-};
-
-const closePopup = (popup) => {
-	document.removeEventListener("keydown", closeByEsc);
-	popup.classList.remove("popup_opened");
-};
-
-const openPopupEdit = () => {
-	setProfileData();
+profileEditBtn.addEventListener("click", () => {
+	const profData = profileInfo.getUserInfo();
+	popupEditName.value = profData.name;
+	popupEditProfession.value = profData.description;
 	popupEditValidator.resetValiadtion();
-	openPopup(popupEdit);
-};
+	profileEditor.openPopup();
+});
 
-const openPopupAdd = (e) => {
-	e.preventDefault();
+profileAddBtn.addEventListener("click", () => {
 	popupAddValidator.resetValiadtion();
-	openPopup(popupAdd);
-};
-
-const openPopupZoom = () => {
-	openPopup(popupZoom);
-};
-
-const setProfileData = () => {
-	popupEditName.value = profileName.textContent;
-	popupEditProfession.value = profileProfession.textContent;
-};
-
-const handleSubmitProfileEdit = (e) => {
-	e.preventDefault();
-	profileName.textContent = popupEditName.value;
-	profileProfession.textContent = popupEditProfession.value;
-	closePopup(popupEdit);
-};
-
-const handleSubmitCardAdd = (e) => {
-	e.preventDefault();
-	const card = { name: "", link: "", alt: "" };
-	card.name = popupAddImgTitle.value;
-	card.link = popupAddImgLink.value;
-	card.alt = popupAddImgTitle.value;
-	renderCard(card);
-	closePopup(popupAdd);
-	popupAddForm.reset();
-};
-
-profileEditBtn.addEventListener("click", openPopupEdit);
-popupEditForm.addEventListener("submit", handleSubmitProfileEdit);
-profileAddBtn.addEventListener("click", openPopupAdd);
-popupAddForm.addEventListener("submit", handleSubmitCardAdd);
-
+	newCardRenderer.openPopup();
+});
