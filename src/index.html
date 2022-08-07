@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mesto - сайт о путешествиях</title>
-  <link rel="stylesheet" href="./pages/index.css" />
 </head>
 
 <body class="page">
@@ -65,7 +64,7 @@
 
     <header class="header section section_size_narrow page__header">
       <a href="#" class="logo">
-        <img src="./images/logo/logo.svg" alt="Место - Россия" class="logo__icon" />
+        <img src="<%=require('./images/logo/logo.svg')%>" alt="Место - Россия" class="logo__icon" />
       </a>
     </header>
 
@@ -73,7 +72,7 @@
 
       <section class="profile section section_size_narrow page__section" aria-label="Секция профиль пользователя">
 
-        <img src="./images/avatars/avatar-01.jpg" alt="аватарка" class="profile__avatar" />
+        <img src="<%=require('./images/avatars/avatar-01.jpg')%>" alt="аватарка" class="profile__avatar" />
         <div class="profile__info">
           <div class="profile__name-wrapper">
             <h1 class="profile__name">Жак-Ив Кусто</h1>

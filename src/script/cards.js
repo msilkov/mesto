@@ -11,7 +11,7 @@ const initialCards = [
 	},
 	{
 		name: "Карачаево-Черкесская республика",
-		link: "./images/cards/karachaevsk.jpg",
+		link: "<%=require('./images/cards/karachaevsk.jpg')%>",
 		alt: "Вид на монастырь в Карачаевске",
 	},
 	{
@@ -31,4 +31,4 @@ const initialCards = [
 	},
 ];
 
-export {initialCards}
+export { initialCards };
