@@ -1,3 +1,10 @@
+const karachaevskImg = new URL(
+	"../images/cards/karachaevsk.jpg",
+	import.meta.url
+);
+const dombayImg = new URL("../images/cards/dombay.jpg", import.meta.url);
+const elbrusImg = new URL("../images/cards/elbrus.jpg", import.meta.url);
+
 const initialCards = [
 	{
 		name: "Байкал",
@@ -11,17 +18,17 @@ const initialCards = [
 	},
 	{
 		name: "Карачаево-Черкесская республика",
-		link: "<%=require('./images/cards/karachaevsk.jpg')%>",
+		link: karachaevskImg,
 		alt: "Вид на монастырь в Карачаевске",
 	},
 	{
 		name: "Домбай",
-		link: "./images/cards/dombay.jpg",
+		link: dombayImg,
 		alt: "Вид на горы в Домбае",
 	},
 	{
 		name: "Гора Эльбрус",
-		link: "./images/cards/elbrus.jpg",
+		link: elbrusImg,
 		alt: "Вид на Эльбрус",
 	},
 	{
