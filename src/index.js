@@ -31,6 +31,8 @@ const profileEditor = new PopupWithForm(".popup_type_edit-profile", {
 	},
 });
 
+profileEditor.setEventListeners();
+
 const newCardRenderer = new PopupWithForm(".popup_type_add-card", {
 	handleFormSubmit: (formData) => {
 		renderCard(formData);
@@ -38,7 +40,11 @@ const newCardRenderer = new PopupWithForm(".popup_type_add-card", {
 	},
 });
 
+newCardRenderer.setEventListeners();
+
 const cardImgZoom = new PopupWithImage(".popup_type_zoom-img");
+
+cardImgZoom.setEventListeners();
 
 const handleCardClick = (name, link, alt) => {
 	cardImgZoom.openPopup(name, link, alt);
@@ -57,9 +63,8 @@ const initialCardsList = new Section(
 	{
 		data: initialCards,
 		renderer: (cardItem) => {
-			const card = new Card(cardItem, ".card-template", handleCardClick);
-			const cardElement = card.generateCard();
-			initialCardsList.addItem(cardElement);
+			const card = createCard(cardItem);
+			initialCardsList.addItem(card);
 		},
 	},
 	".cards-layout"

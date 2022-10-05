@@ -3,6 +3,9 @@ class Card {
 		this._name = obj.name;
 		this._link = obj.link;
 		this._alt = obj.alt;
+		if (obj.alt === undefined) {
+			this._alt = `Изображение: ${obj.name}`;
+		}
 		this._cardSelector = cardSelector;
 		this._handleCardClick = handleCardClick;
 	}
