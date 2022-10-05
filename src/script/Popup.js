@@ -22,7 +22,6 @@ export default class Popup {
 	}
 
 	_handleOverlayClose(e) {
-		console.log("test");
 		if (e.target == this._popup || e.target == this._popupContainer) {
 			this.closePopup();
 		}
