@@ -50,13 +50,13 @@ const handleCardClick = (name, link, alt) => {
 	cardImgZoom.openPopup(name, link, alt);
 };
 
-const createCard = (obj) => {
-	const card = new Card(obj, ".card-template", handleCardClick).generateCard();
+const createCard = (data) => {
+	const card = new Card(data, ".card-template", handleCardClick).generateCard();
 	return card;
 };
 
-const renderCard = (obj) => {
-	cardsLayout.prepend(createCard(obj));
+const renderCard = (data) => {
+	cardsLayout.prepend(createCard(data));
 };
 
 const initialCardsList = new Section(

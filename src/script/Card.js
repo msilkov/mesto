@@ -1,10 +1,10 @@
 class Card {
-	constructor(obj, cardSelector, handleCardClick) {
-		this._name = obj.name;
-		this._link = obj.link;
-		this._alt = obj.alt;
-		if (obj.alt === undefined) {
-			this._alt = `Изображение: ${obj.name}`;
+	constructor(data, cardSelector, handleCardClick) {
+		this._name = data.name;
+		this._link = data.link;
+		this._alt = data.alt;
+		if (data.alt === undefined) {
+			this._alt = `Изображение: ${data.name}`;
 		}
 		this._cardSelector = cardSelector;
 		this._handleCardClick = handleCardClick;
