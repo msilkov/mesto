@@ -61,7 +61,7 @@ const renderCard = (obj) => {
 
 const initialCardsList = new Section(
 	{
-		data: initialCards,
+		items: initialCards,
 		renderer: (cardItem) => {
 			const card = createCard(cardItem);
 			initialCardsList.addItem(card);
