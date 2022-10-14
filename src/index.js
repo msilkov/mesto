@@ -74,8 +74,7 @@ initialCardsList.renderItems();
 
 profileEditBtn.addEventListener("click", () => {
 	const profData = profileInfo.getUserInfo();
-	popupEditName.value = profData.name;
-	popupEditProfession.value = profData.description;
+	profileEditor.setInputValues(profData);
 	popupEditValidator.resetValiadtion();
 	profileEditor.openPopup();
 });
