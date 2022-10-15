@@ -3,8 +3,6 @@ import {
 	profileEditBtn,
 	profileAddBtn,
 	popupEditForm,
-	popupEditName,
-	popupEditProfession,
 	popupAddForm,
 	cardsLayout,
 	validationConfig,
@@ -16,6 +14,29 @@ import Section from "./script/Section.js";
 import PopupWithImage from "./script/PopupWithImage.js";
 import PopupWithForm from "./script/PopupWithForm.js";
 import UserInfo from "./script/UserInfo.js";
+import Api from "./script/Api.js";
+
+const api = new Api({
+	baseUrl: "https://mesto.nomoreparties.co/v1/cohort-51",
+	headers: {
+		authorization: "a86c3d3e-174b-4d9f-bd44-c500fe855ebc",
+		"Content-Type": "application/json",
+	},
+});
+
+api.getInitialCArds().then((data)=>{
+	const initialCardsList = new Section(
+		{
+			items: data,
+			renderer: (cardItem) => {
+				const card = createCard(cardItem);
+				initialCardsList.addItem(card);
+			},
+		},
+		".cards-layout"
+	);
+	initialCardsList.renderItems();
+})
 
 const popupEditValidator = new FormValidator(validationConfig, popupEditForm);
 popupEditValidator.enableValidation();
@@ -59,18 +80,6 @@ const renderCard = (data) => {
 	cardsLayout.prepend(createCard(data));
 };
 
-const initialCardsList = new Section(
-	{
-		items: initialCards,
-		renderer: (cardItem) => {
-			const card = createCard(cardItem);
-			initialCardsList.addItem(card);
-		},
-	},
-	".cards-layout"
-);
-
-initialCardsList.renderItems();
 
 profileEditBtn.addEventListener("click", () => {
 	const profData = profileInfo.getUserInfo();
