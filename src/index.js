@@ -62,8 +62,18 @@ const handleCardClick = (name, link, alt) => {
 	cardImgZoom.openPopup(name, link, alt);
 };
 
+const handleDeleteClick = (card) => {
+	console.log(card);
+	api.deleteCard();
+};
+
 const createCard = (data) => {
-	const card = new Card(data, ".card-template", handleCardClick).generateCard();
+	const card = new Card(
+		data,
+		".card-template",
+		handleCardClick,
+		handleDeleteClick
+	).generateCard();
 	return card;
 };
 

@@ -1,13 +1,15 @@
 class Card {
-	constructor(data, cardSelector, handleCardClick) {
+	constructor(data, cardSelector, handleCardClick, handleDeleteClick) {
 		this._name = data.name;
 		this._link = data.link;
 		this._alt = data.alt;
 		if (data.alt === undefined) {
 			this._alt = `Изображение: ${data.name}`;
 		}
+
 		this._cardSelector = cardSelector;
 		this._handleCardClick = handleCardClick;
+		this._handleDeleteClick = handleDeleteClick;
 	}
 
 	_getTemplate() {
@@ -34,11 +36,11 @@ class Card {
 
 	_setEventListeners() {
 		this._removeBtn.addEventListener("click", () => {
-			this._removeCard();
+			this._handleDeleteClick(this);
 		});
 
 		this._likeBtn.addEventListener("click", () => {
-			this._setCardLike();
+			this.setCardLike();
 		});
 
 		this._cardImg.addEventListener("click", () => {
@@ -46,7 +48,7 @@ class Card {
 		});
 	}
 
-	_removeCard() {
+	removeCard() {
 		this._element.remove();
 		this._element = null;
 	}

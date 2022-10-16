@@ -3,13 +3,11 @@ export default class Api {
 		this._baseUrl = baseUrl;
 		this._token = token;
 	}
-	getResponse(res) {
-		then((res) => {
-			if (res.ok) {
-				return res.json();
-			}
-			return Promise.reject(`Ошибка: ${res.status}`);
-		});
+	_onResponse(res) {
+		if (res.ok) {
+			return res.json();
+		}
+		return Promise.reject(`Ошибка: ${res.status}`);
 	}
 
 	getCards() {
@@ -18,10 +16,7 @@ export default class Api {
 				authorization: this._token,
 			},
 		}).then((res) => {
-			if (res.ok) {
-				return res.json();
-			}
-			return Promise.reject(`Ошибка: ${res.status}`);
+			return this._onResponse(res);
 		});
 	}
 	addCard({ name, link }) {
@@ -33,10 +28,16 @@ export default class Api {
 			},
 			body: JSON.stringify({ name, link }),
 		}).then((res) => {
-			if (res.ok) {
-				return res.json();
-			}
-			return Promise.reject(`Ошибка: ${res.status}`);
+			return this._onResponse(res);
+		});
+	}
+	deleteCard(cardId) {
+		return fetch(`${this._baseUrl}/cards/${cardId}`, {
+			headers: {
+				authorization: this._token,
+			},
+		}).then((res) => {
+			return this._onResponse(res);
 		});
 	}
 }
