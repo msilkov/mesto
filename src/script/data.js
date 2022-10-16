@@ -48,6 +48,9 @@ const validationConfig = {
 	errorClassActive: "popup__input-error_active",
 };
 
+const baseUrl = "https://mesto.nomoreparties.co/v1/cohort-51";
+const token = "a86c3d3e-174b-4d9f-bd44-c500fe855ebc";
+
 export {
 	profileEditBtn,
 	profileName,
@@ -74,4 +77,6 @@ export {
 	closeButtons,
 	getCardByEvent,
 	validationConfig,
+	baseUrl,
+	token,
 };

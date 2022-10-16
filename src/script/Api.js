@@ -1,20 +1,42 @@
 export default class Api {
-	constructor(options) {}
+	constructor(baseUrl, token) {
+		this._baseUrl = baseUrl;
+		this._token = token;
+	}
+	getResponse(res) {
+		then((res) => {
+			if (res.ok) {
+				return res.json();
+			}
+			return Promise.reject(`Ошибка: ${res.status}`);
+		});
+	}
 
-	getInitialCArds() {
-		return fetch("https://mesto.nomoreparties.co/v1/cohort-51/cards", {
+	getCards() {
+		return fetch(`${this._baseUrl}/cards`, {
 			headers: {
-				authorization: "a86c3d3e-174b-4d9f-bd44-c500fe855ebc",
+				authorization: this._token,
 			},
-		})
-			.then((res) => {
-				if (res.ok) {
-					return res.json();
-				}
-
-				// если ошибка, отклоняем промис
-				return Promise.reject(`Ошибка: ${res.status}`);
-			})
-		
+		}).then((res) => {
+			if (res.ok) {
+				return res.json();
+			}
+			return Promise.reject(`Ошибка: ${res.status}`);
+		});
+	}
+	addCard({ name, link }) {
+		return fetch(`${this._baseUrl}/cards`, {
+			method: "POST",
+			headers: {
+				authorization: this._token,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ name, link }),
+		}).then((res) => {
+			if (res.ok) {
+				return res.json();
+			}
+			return Promise.reject(`Ошибка: ${res.status}`);
+		});
 	}
 }

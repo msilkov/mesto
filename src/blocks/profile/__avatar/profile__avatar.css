@@ -4,6 +4,7 @@
 	display: inline-block;
 	border-radius: 50%;
 	margin-right: 30px;
+	object-fit: cover;
 }
 @media screen and (max-width: 720px) {
 	.profile__avatar {
