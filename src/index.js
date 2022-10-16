@@ -64,7 +64,7 @@ const handleCardClick = (name, link, alt) => {
 
 const handleDeleteClick = (card) => {
 	console.log(card);
-	api.deleteCard();
+	api.deleteCard(card);
 };
 
 const createCard = (data) => {
