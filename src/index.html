@@ -12,7 +12,7 @@
 
   <article class="popup popup_type_edit-profile">
     <div class="popup__container">
-      <form name="edit-form" class="popup__form">
+      <form name="edit-form" class="popup__form"> 
         <h3 class="popup__title">Редактировать профиль</h3>
         <fieldset class="popup__input-group">
           <input id="name-input" type="text" name="name" class="popup__input popup__input_type_name"
@@ -32,7 +32,7 @@
 
   <article class="popup popup_type_add-card">
     <div class="popup__container">
-      <form name="edit-form" class="popup__form">
+      <form name="edit-form" class="popup__form"> <!--  поменять на попап форм-->
         <h3 class="popup__title">Новое место</h3>
         <fieldset class="popup__input-group">
           <input id="place-input" type="text" name="name" class="popup__input popup__input_type_img-title"
@@ -45,6 +45,16 @@
           <span id="img-input-error" class="img-input-error popup__input-error">_</span>
         </fieldset>
         <button type="submit" class="popup__submit-btn">Создать</button>
+        <button type="reset" class="popup__close-btn"></button>
+      </form>
+    </div>
+  </article>
+
+  <article class="popup popup_type_confirmation popup_opened">
+    <div class="popup__container">
+      <form name="edit-form" class="popup__form">
+        <h3 class="popup__title">Вы уверены?</h3>
+        <button type="submit" class="popup__submit-btn">Да</button>
         <button type="reset" class="popup__close-btn"></button>
       </form>
     </div>

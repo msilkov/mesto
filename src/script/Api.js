@@ -12,6 +12,7 @@ export default class Api {
 
 	getCards() {
 		return fetch(`${this._baseUrl}/cards`, {
+			method: "GET",
 			headers: {
 				authorization: this._token,
 			},
