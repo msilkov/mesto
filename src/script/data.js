@@ -1,17 +1,19 @@
-const profileEditBtn = document.querySelector(".profile__edit-btn");
+const userEditBtn = document.querySelector(".profile__edit-btn");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__desc");
 const profileAddBtn = document.querySelector(".profile__add-btn");
 
-const popupEdit = document.querySelector(".popup_type_edit-profile");
-const popupEditForm = popupEdit.querySelector(".popup__form");
-const popupEditName = popupEdit.querySelector(".popup__input_type_name");
-const popupEditProfession = popupEdit.querySelector(
+
+
+const popupEditProfile = document.querySelector(".popup_type_edit-profile");
+const popupEditProfileForm = popupEditProfile.querySelector(".popup__form");
+const popupEditProfileName = popupEditProfile.querySelector(".popup__input_type_name");
+const popupEditProfileProfession = popupEditProfile.querySelector(
 	".popup__input_type_profession"
 );
-const popupEditSubmitBtn = popupEdit.querySelector(".popup__submit-btn");
-const popupEditInputList = Array.from(
-	popupEdit.querySelectorAll(".popup__input")
+const popupEditProfileSubmitBtn = popupEditProfile.querySelector(".popup__submit-btn");
+const popupEditProfileInputList = Array.from(
+	popupEditProfile.querySelectorAll(".popup__input")
 );
 
 const popupAdd = document.querySelector(".popup_type_add-card");
@@ -52,16 +54,16 @@ const baseUrl = "https://mesto.nomoreparties.co/v1/cohort-51";
 const token = "a86c3d3e-174b-4d9f-bd44-c500fe855ebc";
 
 export {
-	profileEditBtn,
+	userEditBtn,
 	profileName,
 	profileDescription,
 	profileAddBtn,
-	popupEdit,
-	popupEditForm,
-	popupEditName,
-	popupEditProfession,
-	popupEditSubmitBtn,
-	popupEditInputList,
+	popupEditProfile,
+	popupEditProfileForm,
+	popupEditProfileName,
+	popupEditProfileProfession,
+	popupEditProfileSubmitBtn,
+	popupEditProfileInputList,
 	popupAdd,
 	popupAddForm,
 	popupAddImgTitle,

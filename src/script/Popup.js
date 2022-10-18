@@ -32,4 +32,7 @@ export default class Popup {
 		this._popup.addEventListener("click", this._handleOverlayClose.bind(this));
 		this._closeBtn.addEventListener("click", this.closePopup.bind(this));
 	}
+	console() {
+		console.log(this);
+	}
 }

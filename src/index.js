@@ -1,8 +1,8 @@
 import "./pages/index.css";
 import {
-	profileEditBtn,
+	userEditBtn,
 	profileAddBtn,
-	popupEditForm,
+	popupEditProfileForm,
 	popupAddForm,
 	cardsLayout,
 	validationConfig,
@@ -14,8 +14,14 @@ import { FormValidator } from "./script/FormValidator.js";
 import Section from "./script/Section.js";
 import PopupWithImage from "./script/PopupWithImage.js";
 import PopupWithForm from "./script/PopupWithForm.js";
+import PopupWithConfirmation from "./script/PopupWithConfirmation.js";
 import UserInfo from "./script/UserInfo.js";
 import Api from "./script/Api.js";
+
+const popupEditValidator = new FormValidator(validationConfig, popupEditProfileForm);
+popupEditValidator.enableValidation();
+const popupAddValidator = new FormValidator(validationConfig, popupAddForm);
+popupAddValidator.enableValidation();
 
 const CardsList = new Section(
 	{
@@ -26,11 +32,6 @@ const CardsList = new Section(
 	},
 	".cards-layout"
 );
-
-const popupEditValidator = new FormValidator(validationConfig, popupEditForm);
-popupEditValidator.enableValidation();
-const popupAddValidator = new FormValidator(validationConfig, popupAddForm);
-popupAddValidator.enableValidation();
 
 const profileInfo = new UserInfo(".profile__name", ".profile__desc");
 
@@ -58,13 +59,21 @@ const cardImgZoom = new PopupWithImage(".popup_type_zoom-img");
 
 cardImgZoom.setEventListeners();
 
+const userConfirmation = new PopupWithConfirmation(".popup_type_confirmation", {
+	handleFormSubmit: () => {
+		// вызываю удаление с сервера при сабмите формы
+		// api.deleteCard(card);
+	},
+});
+
+userConfirmation.setEventListeners();
+
 const handleCardClick = (name, link, alt) => {
 	cardImgZoom.openPopup(name, link, alt);
 };
 
 const handleDeleteClick = (card) => {
-	console.log(card);
-	api.deleteCard(card);
+	userConfirmation.openPopup();
 };
 
 const createCard = (data) => {
@@ -81,7 +90,7 @@ const renderCard = (data) => {
 	cardsLayout.prepend(createCard(data));
 };
 
-profileEditBtn.addEventListener("click", () => {
+userEditBtn.addEventListener("click", () => {
 	const profData = profileInfo.getUserInfo();
 	profileEditor.setInputValues(profData);
 	popupEditValidator.resetValiadtion();
