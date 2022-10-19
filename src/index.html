@@ -12,7 +12,7 @@
 
   <article class="popup popup_type_edit-profile">
     <div class="popup__container">
-      <form name="edit-form" class="popup__form"> 
+      <form name="edit-form" class="popup__form">
         <h3 class="popup__title">Редактировать профиль</h3>
         <fieldset class="popup__input-group">
           <input id="name-input" type="text" name="name" class="popup__input popup__input_type_name"
@@ -32,7 +32,8 @@
 
   <article class="popup popup_type_add-card">
     <div class="popup__container">
-      <form name="create-card" class="popup__form"> <!--  поменять на попап форм-->
+      <form name="create-card" class="popup__form">
+        <!--  поменять на попап форм-->
         <h3 class="popup__title">Новое место</h3>
         <fieldset class="popup__input-group">
           <input id="place-input" type="text" name="name" class="popup__input popup__input_type_img-title"
@@ -52,8 +53,9 @@
 
   <article class="popup popup_type_confirmation">
     <div class="popup__container">
-      <form name="confirm" class="popup__form">  <!--  поменять на попап форм добавить обертку-->
-        <h3 class="popup__title">Вы уверены?</h3> 
+      <form name="confirm" class="popup__form">
+        <!--  поменять на попап форм добавить обертку-->
+        <h3 class="popup__title">Вы уверены?</h3>
         <button type="submit" class="popup__submit-btn">Да</button>
         <button type="reset" class="popup__close-btn"></button>
       </form>
@@ -62,7 +64,8 @@
 
   <article class="popup popup_type_edit-avatar popup_openeds">
     <div class="popup__container">
-      <form name="confirm" class="popup__form">  <!--  поменять на попап форм добавить обертку-->
+      <form name="confirm" class="popup__form">
+        <!--  поменять на попап форм добавить обертку-->
         <h3 class="popup__title">Обновить аватар</h3>
         <fieldset class="popup__input-group">
           <input id="img-input" type="text" name="link" class="popup__input popup__input_type_img-link"
@@ -96,8 +99,11 @@
     <main class="content section page__content">
 
       <section class="profile section section_size_narrow page__section" aria-label="Секция профиль пользователя">
+        <div class="profile__avatar-wrapper">
+          <img src="<%=require('./images/avatars/avatar-01.jpg')%>" alt="аватарка" class="profile__avatar" />
+          <div type="button" class="profile__avatar-btn"></div>
+        </div>
 
-        <img src="<%=require('./images/avatars/avatar-01.jpg')%>" alt="аватарка" class="profile__avatar" />
         <div class="profile__info">
           <div class="profile__name-wrapper">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
