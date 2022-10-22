@@ -1,7 +1,8 @@
 import "./pages/index.css";
 import {
-	userEditBtn,
+	profileEditBtn,
 	profileAddBtn,
+	profileAvatar,
 	popupEditProfileForm,
 	popupAddForm,
 	cardsLayout,
@@ -18,7 +19,10 @@ import PopupWithConfirmation from "./script/PopupWithConfirmation.js";
 import UserInfo from "./script/UserInfo.js";
 import Api from "./script/Api.js";
 
-const popupEditValidator = new FormValidator(validationConfig, popupEditProfileForm);
+const popupEditValidator = new FormValidator(
+	validationConfig,
+	popupEditProfileForm
+);
 popupEditValidator.enableValidation();
 const popupAddValidator = new FormValidator(validationConfig, popupAddForm);
 popupAddValidator.enableValidation();
@@ -33,12 +37,19 @@ const CardsList = new Section(
 	".cards-layout"
 );
 
-const profileInfo = new UserInfo(".profile__name", ".profile__desc");
+const profileInfo = new UserInfo(
+	".profile__name",
+	".profile__desc",
+	".profile__avatar"
+);
 
 const profileEditor = new PopupWithForm(".popup_type_edit-profile", {
 	handleFormSubmit: (formData) => {
-		profileInfo.setUserInfo(formData);
+		api.setUserInfo(formData).then((data) => {
+			profileInfo.setUserInfo(data);
+		});
 		profileEditor.closePopup();
+		console.log("data set");
 	},
 });
 
@@ -54,6 +65,13 @@ const newCardRenderer = new PopupWithForm(".popup_type_add-card", {
 });
 
 newCardRenderer.setEventListeners();
+
+const userAvatarEditor = new PopupWithForm(".popup_type_edit-avatar", {
+	handleFormSubmit: (formData) => {
+		profileInfo.setUserInfo(formData);
+	},
+});
+userAvatarEditor.setEventListeners();
 
 const cardImgZoom = new PopupWithImage(".popup_type_zoom-img");
 
@@ -90,17 +108,25 @@ const renderCard = (data) => {
 	cardsLayout.prepend(createCard(data));
 };
 
-userEditBtn.addEventListener("click", () => {
+profileEditBtn.addEventListener("click", () => {
 	const profData = profileInfo.getUserInfo();
 	profileEditor.setInputValues(profData);
 	popupEditValidator.resetValiadtion();
 	profileEditor.openPopup();
 });
 
+profileAvatar.addEventListener('click',()=>{
+	const profData = profileInfo.getUserInfo();
+	userAvatarEditor.setInputValues(profData);
+	popupEditValidator.resetValiadtion();
+	userAvatarEditor.openPopup();
+})
+
 profileAddBtn.addEventListener("click", () => {
 	popupAddValidator.resetValiadtion();
 	newCardRenderer.openPopup();
 });
+
 
 const api = new Api(baseUrl, token);
 
@@ -113,3 +139,7 @@ api
 	.catch((err) => {
 		console.log(err);
 	});
+api.getUserInfo().then(({ name, about, avatar }) => {
+	profileInfo.setUserInfo({ name, about });
+	profileInfo.setUserAvatar({ avatar });
+});

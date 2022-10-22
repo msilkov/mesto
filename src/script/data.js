@@ -1,8 +1,8 @@
-const userEditBtn = document.querySelector(".profile__edit-btn");
+const profileEditBtn = document.querySelector(".profile__edit-btn");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__desc");
 const profileAddBtn = document.querySelector(".profile__add-btn");
-
+const profileAvatar = document.querySelector(".profile__avatar");
 
 
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");
@@ -54,10 +54,11 @@ const baseUrl = "https://mesto.nomoreparties.co/v1/cohort-51";
 const token = "a86c3d3e-174b-4d9f-bd44-c500fe855ebc";
 
 export {
-	userEditBtn,
+	profileEditBtn,
 	profileName,
 	profileDescription,
 	profileAddBtn,
+	profileAvatar,
 	popupEditProfile,
 	popupEditProfileForm,
 	popupEditProfileName,

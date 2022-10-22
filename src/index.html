@@ -20,7 +20,7 @@
           <span id="name-input-error" class="name-input-error popup__input-error"></span>
         </fieldset>
         <fieldset class="popup__input-group">
-          <input id="prof-input" type="text" name="description" class="popup__input popup__input_type_profession"
+          <input id="prof-input" type="text" name="about" class="popup__input popup__input_type_profession"
             placeholder="Ваша профессия" value="" minlength="2" maxlength="200" required />
           <span id="prof-input-error" class="prof-input-error popup__input-error"></span>
         </fieldset>
@@ -62,13 +62,13 @@
     </div>
   </article>
 
-  <article class="popup popup_type_edit-avatar popup_openeds">
+  <article class="popup popup_type_edit-avatar">
     <div class="popup__container">
       <form name="confirm" class="popup__form">
         <!--  поменять на попап форм добавить обертку-->
         <h3 class="popup__title">Обновить аватар</h3>
         <fieldset class="popup__input-group">
-          <input id="img-input" type="text" name="link" class="popup__input popup__input_type_img-link"
+          <input id="img-input" type="text" name="avatar" class="popup__input popup__input_type_img-link"
             placeholder="Ссылка на картинку" value="" pattern="https?://.+" required />
           <span id="img-input-error" class="img-input-error popup__input-error"></span>
         </fieldset>
@@ -100,16 +100,20 @@
 
       <section class="profile section section_size_narrow page__section" aria-label="Секция профиль пользователя">
         <div class="profile__avatar-wrapper">
+
           <img src="<%=require('./images/avatars/avatar-01.jpg')%>" alt="аватарка" class="profile__avatar" />
-          <div type="button" class="profile__avatar-btn"></div>
+          
+          <div class="profile__avatar-overlay">
+            <button type="button" class="profile__avatar-btn"></button>
+          </div>
         </div>
 
         <div class="profile__info">
           <div class="profile__name-wrapper">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button type="button" class="profile__edit-btn"></button>
           </div>
-          <p class="profile__desc">Исследователь океана</p>
+          <p class="profile__desc"></p>
         </div>
         <button type="button" class="profile__add-btn"></button>
 
