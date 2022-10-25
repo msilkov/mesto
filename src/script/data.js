@@ -2,7 +2,7 @@ const profileEditBtn = document.querySelector(".profile__edit-btn");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__desc");
 const profileAddBtn = document.querySelector(".profile__add-btn");
-const profileAvatar = document.querySelector(".profile__avatar");
+const profileAvatarEditBtn = document.querySelector(".profile__avatar-btn");
 
 
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");
@@ -58,7 +58,7 @@ export {
 	profileName,
 	profileDescription,
 	profileAddBtn,
-	profileAvatar,
+	profileAvatarEditBtn,
 	popupEditProfile,
 	popupEditProfileForm,
 	popupEditProfileName,

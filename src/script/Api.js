@@ -64,6 +64,19 @@ export default class Api {
 			return this._onResponse(res);
 		});
 	}
+	setAvatar({avatar}) {
+		return fetch(`${this._baseUrl}/users/me`, {
+			method: "PATCH",
+			headers: {
+				authorization: this._token,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({avatar}),
+		}).then((res) => {
+			return this._onResponse(res);
+		});
+	}
 }
 
 // const baseUrl = "https://mesto.nomoreparties.co/v1/cohort-51";
+// https://nomoreparties.co/v1/

@@ -2,7 +2,7 @@ import "./pages/index.css";
 import {
 	profileEditBtn,
 	profileAddBtn,
-	profileAvatar,
+	profileAvatarEditBtn,
 	popupEditProfileForm,
 	popupAddForm,
 	cardsLayout,
@@ -49,7 +49,6 @@ const profileEditor = new PopupWithForm(".popup_type_edit-profile", {
 			profileInfo.setUserInfo(data);
 		});
 		profileEditor.closePopup();
-		console.log("data set");
 	},
 });
 
@@ -68,7 +67,10 @@ newCardRenderer.setEventListeners();
 
 const userAvatarEditor = new PopupWithForm(".popup_type_edit-avatar", {
 	handleFormSubmit: (formData) => {
-		profileInfo.setUserInfo(formData);
+		api.setAvatar(formData).then((data) => {
+			profileInfo.setUserAvatar(data);
+		});
+		userAvatarEditor.closePopup();
 	},
 });
 userAvatarEditor.setEventListeners();
@@ -115,18 +117,18 @@ profileEditBtn.addEventListener("click", () => {
 	profileEditor.openPopup();
 });
 
-profileAvatar.addEventListener('click',()=>{
+profileAvatarEditBtn.addEventListener("click", () => {
 	const profData = profileInfo.getUserInfo();
+	console.log(profData);
 	userAvatarEditor.setInputValues(profData);
 	popupEditValidator.resetValiadtion();
 	userAvatarEditor.openPopup();
-})
+});
 
 profileAddBtn.addEventListener("click", () => {
 	popupAddValidator.resetValiadtion();
 	newCardRenderer.openPopup();
 });
-
 
 const api = new Api(baseUrl, token);
 
