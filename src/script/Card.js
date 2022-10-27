@@ -7,6 +7,9 @@ class Card {
 			this._alt = `Изображение: ${data.name}`;
 		}
 		this._likes = data.likes;
+		this._cardId = data._id;
+		this._ownerId = data.owner._id;
+		this._userId = "74d9ec94ac84c65b37e2cf06";
 		this._cardSelector = cardSelector;
 		this._handleCardClick = handleCardClick;
 		this._handleDeleteClick = handleDeleteClick;
@@ -28,6 +31,9 @@ class Card {
 		this._likeBtn = this._element.querySelector(".card__like-btn");
 		this._likeCounter = this._element.querySelector(".card__like-counter");
 		this._removeBtn = this._element.querySelector(".card__remove-btn");
+		if (this._ownerId != this._userId) {
+			this._removeBtn.remove();
+		}
 		this._cardTitle.textContent = this._name;
 		this._cardImg.src = this._link;
 		this._cardImg.alt = this._alt;

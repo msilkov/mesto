@@ -80,9 +80,8 @@ const cardImgZoom = new PopupWithImage(".popup_type_zoom-img");
 cardImgZoom.setEventListeners();
 
 const userConfirmation = new PopupWithConfirmation(".popup_type_confirmation", {
-	handleFormSubmit: () => {
-		// вызываю удаление с сервера при сабмите формы
-		// api.deleteCard(card);
+	handleFormSubmit: (cardId) => {
+		api.deleteCard();
 	},
 });
 
@@ -92,7 +91,7 @@ const handleCardClick = (name, link, alt) => {
 	cardImgZoom.openPopup(name, link, alt);
 };
 
-const handleDeleteClick = (card) => {
+const handleDeleteClick = () => {
 	userConfirmation.openPopup();
 };
 
