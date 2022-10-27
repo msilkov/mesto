@@ -6,7 +6,7 @@ class Card {
 		if (data.alt === undefined) {
 			this._alt = `Изображение: ${data.name}`;
 		}
-
+		this._likes = data.likes;
 		this._cardSelector = cardSelector;
 		this._handleCardClick = handleCardClick;
 		this._handleDeleteClick = handleDeleteClick;

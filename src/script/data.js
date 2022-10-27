@@ -50,8 +50,8 @@ const validationConfig = {
 	errorClassActive: "popup__input-error_active",
 };
 
-const baseUrl = "https://mesto.nomoreparties.co/v1/cohort-51";
-const token = "a86c3d3e-174b-4d9f-bd44-c500fe855ebc";
+const baseUrl = "https://mesto.nomoreparties.co/v1/cohort-52";
+const token = "e0e4f5fc-61ac-48ee-ab02-f5c2e770cefc";
 
 export {
 	profileEditBtn,
