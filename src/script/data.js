@@ -2,16 +2,20 @@ const profileEditBtn = document.querySelector(".profile__edit-btn");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__desc");
 const profileAddBtn = document.querySelector(".profile__add-btn");
-const profileAvatarEditBtn = document.querySelector(".profile__avatar-btn");
 
+const profileAvatarEditBtn = document.querySelector(".profile__avatar-btn");
+const popupEditAvatar = document.querySelector(".popup_type_edit-avatar");
 
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");
 const popupEditProfileForm = popupEditProfile.querySelector(".popup__form");
-const popupEditProfileName = popupEditProfile.querySelector(".popup__input_type_name");
+const popupEditProfileName = popupEditProfile.querySelector(
+	".popup__input_type_name"
+);
 const popupEditProfileProfession = popupEditProfile.querySelector(
 	".popup__input_type_profession"
 );
-const popupEditProfileSubmitBtn = popupEditProfile.querySelector(".popup__submit-btn");
+const popupEditProfileSubmitBtn =
+	popupEditProfile.querySelector(".popup__submit-btn");
 const popupEditProfileInputList = Array.from(
 	popupEditProfile.querySelectorAll(".popup__input")
 );
@@ -59,6 +63,7 @@ export {
 	profileDescription,
 	profileAddBtn,
 	profileAvatarEditBtn,
+	popupEditAvatar,
 	popupEditProfile,
 	popupEditProfileForm,
 	popupEditProfileName,

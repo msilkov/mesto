@@ -1,5 +1,5 @@
 class Card {
-	constructor(data, cardSelector, handleCardClick, handleDeleteClick) {
+	constructor(cardSelector, { data, handleCardClick, handleDeleteClick }) {
 		this._name = data.name;
 		this._link = data.link;
 		this._alt = data.alt;
@@ -70,6 +70,9 @@ class Card {
 		} else {
 			this._likeCounter.remove();
 		}
+	}
+	getCardId() {
+		return this._cardId;
 	}
 }
 export { Card };

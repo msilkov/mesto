@@ -3,6 +3,7 @@ import {
 	profileEditBtn,
 	profileAddBtn,
 	profileAvatarEditBtn,
+	popupEditAvatar,
 	popupEditProfileForm,
 	popupAddForm,
 	cardsLayout,
@@ -24,8 +25,15 @@ const popupEditValidator = new FormValidator(
 	popupEditProfileForm
 );
 popupEditValidator.enableValidation();
+
 const popupAddValidator = new FormValidator(validationConfig, popupAddForm);
 popupAddValidator.enableValidation();
+
+const popupAvatarValidator = new FormValidator(
+	validationConfig,
+	popupEditAvatar
+);
+popupAvatarValidator.enableValidation();
 
 const CardsList = new Section(
 	{
@@ -66,11 +74,11 @@ const newCardRenderer = new PopupWithForm(".popup_type_add-card", {
 newCardRenderer.setEventListeners();
 
 const userAvatarEditor = new PopupWithForm(".popup_type_edit-avatar", {
-	handleFormSubmit: (formData) => {
-		api.setAvatar(formData).then((data) => {
+	handleFormSubmit: (formUrl) => {
+		api.setAvatar(formUrl).then((data) => {
 			profileInfo.setUserAvatar(data);
+			userAvatarEditor.closePopup();
 		});
-		userAvatarEditor.closePopup();
 	},
 });
 userAvatarEditor.setEventListeners();
@@ -80,29 +88,29 @@ const cardImgZoom = new PopupWithImage(".popup_type_zoom-img");
 cardImgZoom.setEventListeners();
 
 const userConfirmation = new PopupWithConfirmation(".popup_type_confirmation", {
-	handleFormSubmit: (cardId) => {
-		api.deleteCard();
-	},
+	handleFormSubmit: () => {},
 });
 
 userConfirmation.setEventListeners();
 
-const handleCardClick = (name, link, alt) => {
-	cardImgZoom.openPopup(name, link, alt);
-};
-
-const handleDeleteClick = () => {
+const handleDeleteClick = (card) => {
 	userConfirmation.openPopup();
+	userConfirmation.setAction(() => {
+		api.deleteCard(card.getCardId()).then(() => {
+			card.removeCard();
+		});
+	});
 };
 
 const createCard = (data) => {
-	const card = new Card(
-		data,
-		".card-template",
-		handleCardClick,
-		handleDeleteClick
-	).generateCard();
-	return card;
+	const card = new Card(".card-template", {
+		data: { ...data },
+		handleCardClick: (name, link, alt) => {
+			cardImgZoom.openPopup(name, link, alt);
+		},
+		handleDeleteClick,
+	});
+	return card.generateCard();
 };
 
 const renderCard = (data) => {
@@ -117,10 +125,7 @@ profileEditBtn.addEventListener("click", () => {
 });
 
 profileAvatarEditBtn.addEventListener("click", () => {
-	const profData = profileInfo.getUserInfo();
-	console.log(profData);
-	userAvatarEditor.setInputValues(profData);
-	popupEditValidator.resetValiadtion();
+	popupAvatarValidator.resetValiadtion();
 	userAvatarEditor.openPopup();
 });
 

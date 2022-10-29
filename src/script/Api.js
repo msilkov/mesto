@@ -3,11 +3,23 @@ export default class Api {
 		this._baseUrl = baseUrl;
 		this._token = token;
 	}
+
 	_onResponse(res) {
 		if (res.ok) {
 			return res.json();
 		}
 		return Promise.reject(`Ошибка: ${res.status}`);
+	}
+
+	getUserInfo() {
+		return fetch(`${this._baseUrl}/users/me`, {
+			method: "GET",
+			headers: {
+				authorization: this._token,
+			},
+		}).then((res) => {
+			return this._onResponse(res);
+		});
 	}
 
 	getCards() {
@@ -20,6 +32,7 @@ export default class Api {
 			return this._onResponse(res);
 		});
 	}
+
 	addCard({ name, link }) {
 		return fetch(`${this._baseUrl}/cards`, {
 			method: "POST",
@@ -32,6 +45,7 @@ export default class Api {
 			return this._onResponse(res);
 		});
 	}
+
 	deleteCard(cardId) {
 		return fetch(`${this._baseUrl}/cards/${cardId}`, {
 			method: "DELETE",
@@ -42,16 +56,7 @@ export default class Api {
 			return this._onResponse(res);
 		});
 	}
-	getUserInfo() {
-		return fetch(`${this._baseUrl}/users/me`, {
-			method: "GET",
-			headers: {
-				authorization: this._token,
-			},
-		}).then((res) => {
-			return this._onResponse(res);
-		});
-	}
+
 	setUserInfo({ name, about }) {
 		return fetch(`${this._baseUrl}/users/me`, {
 			method: "PATCH",
@@ -64,8 +69,9 @@ export default class Api {
 			return this._onResponse(res);
 		});
 	}
+	
 	setAvatar({ avatar }) {
-		return fetch(`${this._baseUrl}/users/me`, {
+		return fetch(`${this._baseUrl}/users/me/avatar`, {
 			method: "PATCH",
 			headers: {
 				authorization: this._token,
