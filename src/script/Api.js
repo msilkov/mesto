@@ -82,4 +82,30 @@ export default class Api {
 			return this._onResponse(res);
 		});
 	}
+
+	setCardLike(cardId) {
+		return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+			method: "PUT",
+			headers: {
+				authorization: this._token,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(),
+		}).then((res) => {
+			return this._onResponse(res);
+		});
+	}
+
+	removeCardLike(cardId) {
+		return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+			method: "DELETE",
+			headers: {
+				authorization: this._token,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(),
+		}).then((res) => {
+			return this._onResponse(res);
+		});
+	}
 }

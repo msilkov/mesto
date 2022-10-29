@@ -51,6 +51,8 @@ const profileInfo = new UserInfo(
 	".profile__avatar"
 );
 
+let currentUserId = 0;
+
 const profileEditor = new PopupWithForm(".popup_type_edit-profile", {
 	handleFormSubmit: (formData) => {
 		api.setUserInfo(formData).then((data) => {
@@ -81,6 +83,7 @@ const userAvatarEditor = new PopupWithForm(".popup_type_edit-avatar", {
 		});
 	},
 });
+
 userAvatarEditor.setEventListeners();
 
 const cardImgZoom = new PopupWithImage(".popup_type_zoom-img");
@@ -93,22 +96,24 @@ const userConfirmation = new PopupWithConfirmation(".popup_type_confirmation", {
 
 userConfirmation.setEventListeners();
 
-const handleDeleteClick = (card) => {
-	userConfirmation.openPopup();
-	userConfirmation.setAction(() => {
-		api.deleteCard(card.getCardId()).then(() => {
-			card.removeCard();
-		});
-	});
-};
-
 const createCard = (data) => {
 	const card = new Card(".card-template", {
-		data: { ...data },
+		data: { ...data, currentUserId },
 		handleCardClick: (name, link, alt) => {
 			cardImgZoom.openPopup(name, link, alt);
 		},
-		handleDeleteClick,
+		handleDeleteClick: () => {
+			userConfirmation.openPopup();
+			userConfirmation.setSubmitAction(() => {
+				api.deleteCard(card.getCardId()).then(() => {
+					card.removeCard();
+					userConfirmation.closePopup();
+				});
+			});
+		},
+		handleLikeClick: () => {
+			api.setCardLike(card.getCardId());
+		},
 	});
 	return card.generateCard();
 };
@@ -139,13 +144,14 @@ const api = new Api(baseUrl, token);
 api
 	.getCards()
 	.then((items) => {
-		CardsList.setItems(items);
+		CardsList.setItems(items.reverse());
 		CardsList.renderItems();
 	})
 	.catch((err) => {
 		console.log(err);
 	});
-api.getUserInfo().then(({ name, about, avatar }) => {
+api.getUserInfo().then(({ name, about, avatar, _id }) => {
+	currentUserId = _id;
 	profileInfo.setUserInfo({ name, about });
 	profileInfo.setUserAvatar({ avatar });
 });
