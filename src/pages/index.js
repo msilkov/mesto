@@ -10,15 +10,15 @@ import {
 	validationConfig,
 	baseUrl,
 	token,
-} from "./script/data.js";
-import { Card } from "./script/Card.js";
-import { FormValidator } from "./script/FormValidator.js";
-import Section from "./script/Section.js";
-import PopupWithImage from "./script/PopupWithImage.js";
-import PopupWithForm from "./script/PopupWithForm.js";
-import PopupWithConfirmation from "./script/PopupWithConfirmation.js";
-import UserInfo from "./script/UserInfo.js";
-import Api from "./script/Api.js";
+} from "../script/data.js";
+import { Card } from "../script/Card.js";
+import { FormValidator } from "../script/FormValidator.js";
+import Section from "../script/Section.js";
+import PopupWithImage from "../script/PopupWithImage.js";
+import PopupWithForm from "../script/PopupWithForm.js";
+import PopupWithConfirmation from "../script/PopupWithConfirmation.js";
+import UserInfo from "../script/UserInfo.js";
+import Api from "../script/Api.js";
 
 const popupEditValidator = new FormValidator(
 	validationConfig,
