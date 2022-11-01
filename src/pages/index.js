@@ -1,4 +1,4 @@
-import "./pages/index.css";
+import "./index.css";
 import {
 	profileEditBtn,
 	profileAddBtn,
@@ -10,15 +10,15 @@ import {
 	validationConfig,
 	baseUrl,
 	token,
-} from "../script/data.js";
-import { Card } from "../script/Card.js";
-import { FormValidator } from "../script/FormValidator.js";
-import Section from "../script/Section.js";
-import PopupWithImage from "../script/PopupWithImage.js";
-import PopupWithForm from "../script/PopupWithForm.js";
-import PopupWithConfirmation from "../script/PopupWithConfirmation.js";
-import UserInfo from "../script/UserInfo.js";
-import Api from "../script/Api.js";
+} from "../utils/data.js";
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
+import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 
 const popupEditValidator = new FormValidator(
 	validationConfig,
