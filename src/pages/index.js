@@ -55,10 +55,15 @@ let currentUserId = 0;
 
 const profileEditor = new PopupWithForm(".popup_type_edit-profile", {
 	handleFormSubmit: (formData) => {
-		api.setUserInfo(formData).then((data) => {
-			profileInfo.setUserInfo(data);
-		});
-		profileEditor.closePopup();
+		api
+			.setUserInfo(formData)
+			.then((data) => {
+				profileInfo.setUserInfo(data);
+				profileEditor.closePopup();
+			})
+			.catch((err) => {
+				console.log(`Ошибка при изменении данных пользователя: ${err}`);
+			});
 	},
 });
 
@@ -66,10 +71,15 @@ profileEditor.setEventListeners();
 
 const newCardRenderer = new PopupWithForm(".popup_type_add-card", {
 	handleFormSubmit: (formData) => {
-		api.addCard(formData).then((item) => {
-			renderCard(item);
-			newCardRenderer.closePopup();
-		});
+		api
+			.addCard(formData)
+			.then((item) => {
+				renderCard(item);
+				newCardRenderer.closePopup();
+			})
+			.catch((err) => {
+				console.log(`Ошибка при добавлении новой карточки: ${err}`);
+			});
 	},
 });
 
@@ -77,10 +87,15 @@ newCardRenderer.setEventListeners();
 
 const userAvatarEditor = new PopupWithForm(".popup_type_edit-avatar", {
 	handleFormSubmit: (formUrl) => {
-		api.setAvatar(formUrl).then((data) => {
-			profileInfo.setUserAvatar(data);
-			userAvatarEditor.closePopup();
-		});
+		api
+			.setAvatar(formUrl)
+			.then((data) => {
+				profileInfo.setUserAvatar(data);
+				userAvatarEditor.closePopup();
+			})
+			.catch((err) => {
+				console.log(`Ошибка при изменении аватара пользователя: ${err}`);
+			});
 	},
 });
 
@@ -105,14 +120,21 @@ const createCard = (data) => {
 		handleDeleteClick: () => {
 			userConfirmation.openPopup();
 			userConfirmation.setSubmitAction(() => {
-				api.deleteCard(card.getCardId()).then(() => {
-					card.removeCard();
-					userConfirmation.closePopup();
-				});
+				api
+					.deleteCard(card.getCardId())
+					.then(() => {
+						card.removeCard();
+						userConfirmation.closePopup();
+					})
+					.catch((err) => {
+						console.log(`Ошибка при удалении карточки: ${err}`);
+					});
 			});
 		},
 		handleLikeClick: () => {
-			api.setCardLike(card.getCardId());
+			if (!card.isLiked()) {
+				api.toggleCardLikeStatus(card.getCardId(), "DELETE");
+			}
 		},
 	});
 	return card.generateCard();
@@ -148,10 +170,15 @@ api
 		CardsList.renderItems();
 	})
 	.catch((err) => {
-		console.log(err);
+		console.log(`Ошибка при загрузке карточек с сервера: ${err}`);
 	});
-api.getUserInfo().then(({ name, about, avatar, _id }) => {
-	currentUserId = _id;
-	profileInfo.setUserInfo({ name, about });
-	profileInfo.setUserAvatar({ avatar });
-});
+api
+	.getUserInfo()
+	.then(({ name, about, avatar, _id }) => {
+		currentUserId = _id;
+		profileInfo.setUserInfo({ name, about });
+		profileInfo.setUserAvatar({ avatar });
+	})
+	.catch((err) => {
+		console.log(`Ошибка при загрузки данных пользователя: ${err}`);
+	});
