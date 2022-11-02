@@ -53,24 +53,33 @@ const profileInfo = new UserInfo(
 
 let currentUserId = 0;
 
-const profileEditor = new PopupWithForm(".popup_type_edit-profile", {
-	handleFormSubmit: (formData) => {
-		api
-			.setUserInfo(formData)
-			.then((data) => {
-				profileInfo.setUserInfo(data);
-				profileEditor.closePopup();
-			})
-			.catch((err) => {
-				console.log(`Ошибка при изменении данных пользователя: ${err}`);
-			});
-	},
-});
+const profileEditor = new PopupWithForm(
+	".popup_type_edit-profile",
+	"Сохранить",
+	{
+		handleFormSubmit: (formData) => {
+			profileEditor.loadingIndicator(true);
+			api
+				.setUserInfo(formData)
+				.then((data) => {
+					profileInfo.setUserInfo(data);
+					profileEditor.closePopup();
+				})
+				.catch((err) => {
+					console.log(`Ошибка при изменении данных пользователя: ${err}`);
+				})
+				.finally(() => {
+					profileEditor.loadingIndicator(false);
+				});
+		},
+	}
+);
 
 profileEditor.setEventListeners();
 
-const newCardRenderer = new PopupWithForm(".popup_type_add-card", {
+const newCardRenderer = new PopupWithForm(".popup_type_add-card", "Создать", {
 	handleFormSubmit: (formData) => {
+		newCardRenderer.loadingIndicator(true);
 		api
 			.addCard(formData)
 			.then((item) => {
@@ -79,25 +88,36 @@ const newCardRenderer = new PopupWithForm(".popup_type_add-card", {
 			})
 			.catch((err) => {
 				console.log(`Ошибка при добавлении новой карточки: ${err}`);
+			})
+			.finally(() => {
+				newCardRenderer.loadingIndicator(false);
 			});
 	},
 });
 
 newCardRenderer.setEventListeners();
 
-const userAvatarEditor = new PopupWithForm(".popup_type_edit-avatar", {
-	handleFormSubmit: (formUrl) => {
-		api
-			.setAvatar(formUrl)
-			.then((data) => {
-				profileInfo.setUserAvatar(data);
-				userAvatarEditor.closePopup();
-			})
-			.catch((err) => {
-				console.log(`Ошибка при изменении аватара пользователя: ${err}`);
-			});
-	},
-});
+const userAvatarEditor = new PopupWithForm(
+	".popup_type_edit-avatar",
+	"Сохранить",
+	{
+		handleFormSubmit: (formUrl) => {
+			userAvatarEditor.loadingIndicator(true);
+			api
+				.setAvatar(formUrl)
+				.then((data) => {
+					profileInfo.setUserAvatar(data);
+					userAvatarEditor.closePopup();
+				})
+				.catch((err) => {
+					console.log(`Ошибка при изменении аватара пользователя: ${err}`);
+				})
+				.finally(() => {
+					userAvatarEditor.loadingIndicator(false);
+				});
+		},
+	}
+);
 
 userAvatarEditor.setEventListeners();
 
@@ -105,9 +125,13 @@ const cardImgZoom = new PopupWithImage(".popup_type_zoom-img");
 
 cardImgZoom.setEventListeners();
 
-const userConfirmation = new PopupWithConfirmation(".popup_type_confirmation", {
-	handleFormSubmit: () => {},
-});
+const userConfirmation = new PopupWithConfirmation(
+	".popup_type_confirmation",
+	"Да",
+	{
+		handleFormSubmit: () => {},
+	}
+);
 
 userConfirmation.setEventListeners();
 
@@ -120,6 +144,7 @@ const createCard = (data) => {
 		handleDeleteClick: () => {
 			userConfirmation.openPopup();
 			userConfirmation.setSubmitAction(() => {
+				userConfirmation.loadingIndicator(true);
 				api
 					.deleteCard(card.getCardId())
 					.then(() => {
@@ -128,12 +153,35 @@ const createCard = (data) => {
 					})
 					.catch((err) => {
 						console.log(`Ошибка при удалении карточки: ${err}`);
+					})
+					.finally(() => {
+						userConfirmation.loadingIndicator(false);
 					});
 			});
 		},
 		handleLikeClick: () => {
-			if (!card.isLiked()) {
-				api.toggleCardLikeStatus(card.getCardId(), "DELETE");
+			if (card.hasLiked()) {
+				api
+					.toggleCardLikeStatus(card.getCardId(), "DELETE")
+					.then((data) => {
+						card.updateLikeCounter(data);
+					})
+					.catch((err) => {
+						console.log(
+							`Ошибка при отображении лайка карточки с сервера: ${err}`
+						);
+					});
+			} else {
+				api
+					.toggleCardLikeStatus(card.getCardId(), "PUT")
+					.then((data) => {
+						card.updateLikeCounter(data);
+					})
+					.catch((err) => {
+						console.log(
+							`Ошибка при отображении лайка карточки с сервера: ${err}`
+						);
+					});
 			}
 		},
 	});

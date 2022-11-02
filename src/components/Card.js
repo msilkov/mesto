@@ -41,7 +41,8 @@ class Card {
 		this._cardTitle.textContent = this._name;
 		this._cardImg.src = this._link;
 		this._cardImg.alt = this._alt;
-		this._updateCardLikeStatus();
+		this._showCardLikes();
+		this._showLikeStatus();
 		this._setEventListeners();
 		return this._element;
 	}
@@ -65,20 +66,30 @@ class Card {
 		this._element = null;
 	}
 
-	_updateCardLikeStatus() {
-		this._likeBtn.classList.toggle("card__like-btn_active");
-	}
-
-	isLiked() {
-		if (this._likes.includes(this._userId)) {
+	_showLikeStatus() {
+		if (this.hasLiked()) {
 			this._likeBtn.classList.add("card__like-btn_active");
-			console.log("true");
-			return true;
 		} else {
 			this._likeBtn.classList.remove("card__like-btn_active");
-			console.log("false");
-			return false;
 		}
+	}
+	_showCardLikes() {
+		this._likeCounter.textContent = this._likes.length;
+
+		if (this._likes.length > 0) {
+			this._likeCounter.classList.add("card__like-counter_active");
+		} else {
+			this._likeCounter.classList.remove("card__like-counter_active");
+		}
+	}
+
+	hasLiked() {
+		return this._likes.find((item) => item._id === this._userId);
+	}
+	updateLikeCounter(data) {
+		this._likes = data.likes;
+		this._showCardLikes();
+		this._showLikeStatus();
 	}
 
 	getCardId() {

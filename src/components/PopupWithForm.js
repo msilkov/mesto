@@ -1,11 +1,13 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
-	constructor(popupSelector, { handleFormSubmit }) {
+	constructor(popupSelector, defaultSubmitText, { handleFormSubmit }) {
 		super(popupSelector);
 		this.handleFormSubmit = handleFormSubmit;
 		this._form = this._popup.querySelector(".popup__form");
 		this._submitBtn = this._popup.querySelector(".popup__submit-btn");
+		this._defaultSubmitText = defaultSubmitText;
+		this._submitBtn.textContent = this._defaultSubmitText;
 		this._inputList = this._popup.querySelectorAll(".popup__input");
 		this._formValues = {};
 	}
@@ -35,5 +37,9 @@ export default class PopupWithForm extends Popup {
 		super.closePopup();
 		this._form.reset();
 	}
-	
+	loadingIndicator(isFetching) {
+		this._submitBtn.textContent = isFetching
+			? "Сохранение..."
+			: this._defaultSubmitText;
+	}
 }

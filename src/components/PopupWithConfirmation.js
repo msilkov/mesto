@@ -1,11 +1,13 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithConfirmation extends Popup {
-	constructor(popupSelector, { handleFormSubmit }) {
+	constructor(popupSelector, defaultSubmitText, { handleFormSubmit }) {
 		super(popupSelector);
 		this._handleFormSubmit = handleFormSubmit;
 		this._form = this._popup.querySelector(".popup__form");
 		this._submitBtn = this._popup.querySelector(".popup__submit-btn");
+		this._defaultSubmitText = defaultSubmitText;
+		this._submitBtn.textContent = this._defaultSubmitText;
 	}
 
 	setEventListeners() {
@@ -20,5 +22,10 @@ export default class PopupWithConfirmation extends Popup {
 	}
 	setSubmitAction(action) {
 		this._submitAction = action;
+	}
+	loadingIndicator(isFetching) {
+		this._submitBtn.textContent = isFetching
+			? "Удаление..."
+			: this._defaultSubmitText;
 	}
 }
