@@ -217,22 +217,14 @@ const api = new Api({
 	},
 });
 
-api
-	.getCards()
-	.then((items) => {
+Promise.all([api.getCards(), api.getUserInfo()])
+	.then(([items, { name, about, avatar, _id }]) => {
 		cardsList.setItems(items.reverse());
 		cardsList.renderItems();
-	})
-	.catch((err) => {
-		console.log(`Ошибка при загрузке карточек с сервера: ${err}`);
-	});
-api
-	.getUserInfo()
-	.then(({ name, about, avatar, _id }) => {
-		currentUserId = _id;
 		profileInfo.setUserInfo({ name, about });
 		profileInfo.setUserAvatar({ avatar });
+		return (currentUserId = _id);
 	})
 	.catch((err) => {
-		console.log(`Ошибка при загрузке данных пользователя: ${err}`);
+		console.log(`Ошибка при загрузке данных с сервера: ${err}`);
 	});
