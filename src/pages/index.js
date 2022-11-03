@@ -234,5 +234,5 @@ api
 		profileInfo.setUserAvatar({ avatar });
 	})
 	.catch((err) => {
-		console.log(`Ошибка при загрузки данных пользователя: ${err}`);
+		console.log(`Ошибка при загрузке данных пользователя: ${err}`);
 	});
