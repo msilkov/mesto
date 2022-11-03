@@ -35,11 +35,11 @@ const popupAvatarValidator = new FormValidator(
 );
 popupAvatarValidator.enableValidation();
 
-const CardsList = new Section(
+const cardsList = new Section(
 	{
 		renderer: (cardItem) => {
 			const card = createCard(cardItem);
-			CardsList.addItem(card);
+			cardsList.addItem(card);
 		},
 	},
 	".cards-layout"
@@ -220,8 +220,8 @@ const api = new Api({
 api
 	.getCards()
 	.then((items) => {
-		CardsList.setItems(items.reverse());
-		CardsList.renderItems();
+		cardsList.setItems(items.reverse());
+		cardsList.renderItems();
 	})
 	.catch((err) => {
 		console.log(`Ошибка при загрузке карточек с сервера: ${err}`);
