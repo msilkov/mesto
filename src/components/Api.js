@@ -1,7 +1,7 @@
 export default class Api {
-	constructor(baseUrl, token) {
+	constructor({ baseUrl, headers }) {
 		this._baseUrl = baseUrl;
-		this._token = token;
+		this._headers = headers;
 	}
 
 	_onResponse(res) {
@@ -14,9 +14,7 @@ export default class Api {
 	getUserInfo() {
 		return fetch(`${this._baseUrl}/users/me`, {
 			method: "GET",
-			headers: {
-				authorization: this._token,
-			},
+			headers: this._headers,
 		}).then((res) => {
 			return this._onResponse(res);
 		});
@@ -25,9 +23,7 @@ export default class Api {
 	getCards() {
 		return fetch(`${this._baseUrl}/cards`, {
 			method: "GET",
-			headers: {
-				authorization: this._token,
-			},
+			headers: this._headers,
 		}).then((res) => {
 			return this._onResponse(res);
 		});
@@ -36,10 +32,7 @@ export default class Api {
 	addCard({ name, link }) {
 		return fetch(`${this._baseUrl}/cards`, {
 			method: "POST",
-			headers: {
-				authorization: this._token,
-				"Content-Type": "application/json",
-			},
+			headers: this._headers,
 			body: JSON.stringify({ name, link }),
 		}).then((res) => {
 			return this._onResponse(res);
@@ -49,9 +42,7 @@ export default class Api {
 	deleteCard(cardId) {
 		return fetch(`${this._baseUrl}/cards/${cardId}`, {
 			method: "DELETE",
-			headers: {
-				authorization: this._token,
-			},
+			headers: this._headers,
 		}).then((res) => {
 			return this._onResponse(res);
 		});
@@ -60,10 +51,7 @@ export default class Api {
 	setUserInfo({ name, about }) {
 		return fetch(`${this._baseUrl}/users/me`, {
 			method: "PATCH",
-			headers: {
-				authorization: this._token,
-				"Content-Type": "application/json",
-			},
+			headers: this._headers,
 			body: JSON.stringify({ name, about }),
 		}).then((res) => {
 			return this._onResponse(res);
@@ -73,10 +61,7 @@ export default class Api {
 	setAvatar({ avatar }) {
 		return fetch(`${this._baseUrl}/users/me/avatar`, {
 			method: "PATCH",
-			headers: {
-				authorization: this._token,
-				"Content-Type": "application/json",
-			},
+			headers: this._headers,
 			body: JSON.stringify({ avatar }),
 		}).then((res) => {
 			return this._onResponse(res);
@@ -86,10 +71,7 @@ export default class Api {
 	toggleCardLikeStatus(cardId, method) {
 		return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
 			method: `${method}`,
-			headers: {
-				authorization: this._token,
-				"Content-Type": "application/json",
-			},
+			headers: this._headers,
 			body: JSON.stringify(),
 		}).then((res) => {
 			return this._onResponse(res);

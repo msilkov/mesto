@@ -209,7 +209,13 @@ profileAddBtn.addEventListener("click", () => {
 	newCardRenderer.openPopup();
 });
 
-const api = new Api(baseUrl, token);
+const api = new Api({
+	baseUrl: baseUrl,
+	headers: {
+		authorization: token,
+		"Content-Type": "application/json",
+	},
+});
 
 api
 	.getCards()
