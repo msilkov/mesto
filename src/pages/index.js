@@ -51,7 +51,7 @@ const profileInfo = new UserInfo(
 	".profile__avatar"
 );
 
-let currentUserId = 0;
+let currentUserId = null;
 
 const profileEditor = new PopupWithForm(
 	".popup_type_edit-profile",
@@ -219,11 +219,11 @@ const api = new Api({
 
 Promise.all([api.getCards(), api.getUserInfo()])
 	.then(([items, { name, about, avatar, _id }]) => {
+		currentUserId = _id;
 		cardsList.setItems(items.reverse());
 		cardsList.renderItems();
 		profileInfo.setUserInfo({ name, about });
 		profileInfo.setUserAvatar({ avatar });
-		return (currentUserId = _id);
 	})
 	.catch((err) => {
 		console.log(`Ошибка при загрузке данных с сервера: ${err}`);
