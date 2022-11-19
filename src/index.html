@@ -10,85 +10,10 @@
 
 <body class="page">
 
-  <article class="popup popup_type_edit-profile">
-    <div class="popup__container">
-      <form name="edit-form" class="popup__form">
-        <h3 class="popup__title">Редактировать профиль</h3>
-        <fieldset class="popup__input-group">
-          <input id="name-input" type="text" name="name" class="popup__input popup__input_type_name"
-            placeholder="Ваше Имя" value="" minlength="2" maxlength="40" required />
-          <span id="name-input-error" class="name-input-error popup__input-error"></span>
-        </fieldset>
-        <fieldset class="popup__input-group">
-          <input id="prof-input" type="text" name="about" class="popup__input popup__input_type_profession"
-            placeholder="Ваша профессия" value="" minlength="2" maxlength="200" required />
-          <span id="prof-input-error" class="prof-input-error popup__input-error"></span>
-        </fieldset>
-        <button type="submit" class="popup__submit-btn">Сохранить</button>
-        <button type="reset" class="popup__close-btn"></button>
-      </form>
-    </div>
-  </article>
 
-  <article class="popup popup_type_add-card">
-    <div class="popup__container">
-      <form name="create-card" class="popup__form">
-        <!--  поменять на попап форм-->
-        <h3 class="popup__title">Новое место</h3>
-        <fieldset class="popup__input-group">
-          <input id="place-input" type="text" name="name" class="popup__input popup__input_type_img-title"
-            placeholder="Название" value="" minlength="2" maxlength="30" required />
-          <span id="place-input-error" class="place-input-error popup__input-error"></span>
-        </fieldset>
-        <fieldset class="popup__input-group">
-          <input id="img-input" type="text" name="link" class="popup__input popup__input_type_img-link"
-            placeholder="Ссылка на картинку" value="" pattern="https?://.+" required />
-          <span id="img-input-error" class="img-input-error popup__input-error"></span>
-        </fieldset>
-        <button type="submit" class="popup__submit-btn">Создать</button>
-        <button type="reset" class="popup__close-btn"></button>
-      </form>
-    </div>
-  </article>
-
-  <article class="popup popup_type_confirmation">
-    <div class="popup__container">
-      <form name="confirm" class="popup__form">
-        <!--  поменять на попап форм добавить обертку-->
-        <h3 class="popup__title">Вы уверены?</h3>
-        <button type="submit" class="popup__submit-btn">Да</button>
-        <button type="reset" class="popup__close-btn"></button>
-      </form>
-    </div>
-  </article>
-
-  <article class="popup popup_type_edit-avatar">
-    <div class="popup__container">
-      <form name="confirm" class="popup__form">
-        <!--  поменять на попап форм добавить обертку-->
-        <h3 class="popup__title">Обновить аватар</h3>
-        <fieldset class="popup__input-group">
-          <input id="owner-avatar" type="url" name="avatar" class="popup__input popup__input_type_img-link"
-            placeholder="Ссылка на картинку" value="" pattern="https?://.+" required />
-          <span id="owner-avatar-error" class="img-input-error popup__input-error"></span>
-        </fieldset>
-        <button type="submit" class="popup__submit-btn">Сохранить</button>
-        <button type="reset" class="popup__close-btn"></button>
-      </form>
-    </div>
-  </article>
-
-  <article class="popup popup_type_zoom-img">
-    <div class="popup__container">
-      <div class="popup__img-wrapper">
-        <img class="popup__img" src="#" alt="">
-        <p class="popup__img-desc"></p>
-        <button type="reset" class="popup__close-btn"></button>
-      </div>
-    </div>
-  </article>
-
-  <div class="page__container">
+  <!-- fix to page content и попапы в контент перенести-->
+  <!-- fix popups html -->
+  <div class="page__content">
 
     <header class="header section section_size_narrow page__header">
       <a href="#" class="logo">
@@ -96,7 +21,7 @@
       </a>
     </header>
 
-    <main class="content section page__content">
+    <main class="content section">
 
       <section class="profile section section_size_narrow page__section" aria-label="Секция профиль пользователя">
         <div class="profile__avatar-wrapper">
@@ -127,6 +52,82 @@
     <footer class="footer page__footer section section_size_narrow">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
+
+    <article class="popup popup_type_edit-profile">
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form name="edit-form" class="popup__form">
+          <fieldset class="popup__input-group">
+            <input id="name-input" type="text" name="name" class="popup__input popup__input_type_name"
+              placeholder="Ваше Имя" value="" minlength="2" maxlength="40" required />
+            <span id="name-input-error" class="name-input-error popup__input-error"></span>
+          </fieldset>
+          <fieldset class="popup__input-group">
+            <input id="prof-input" type="text" name="about" class="popup__input popup__input_type_profession"
+              placeholder="Ваша профессия" value="" minlength="2" maxlength="200" required />
+            <span id="prof-input-error" class="prof-input-error popup__input-error"></span>
+          </fieldset>
+          <button type="submit" class="popup__submit-btn">Сохранить</button>
+        </form>
+        <button type="reset" class="popup__close-btn"></button>
+      </div>
+    </article>
+
+    <article class="popup popup_type_add-card">
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form name="create-card" class="popup__form">
+          <fieldset class="popup__input-group">
+            <input id="place-input" type="text" name="name" class="popup__input popup__input_type_img-title"
+              placeholder="Название" value="" minlength="2" maxlength="30" required />
+            <span id="place-input-error" class="place-input-error popup__input-error"></span>
+          </fieldset>
+          <fieldset class="popup__input-group">
+            <input id="img-input" type="text" name="link" class="popup__input popup__input_type_img-link"
+              placeholder="Ссылка на картинку" value="" pattern="https?://.+" required />
+            <span id="img-input-error" class="img-input-error popup__input-error"></span>
+          </fieldset>
+          <button type="submit" class="popup__submit-btn">Создать</button>
+        </form>
+        <button type="reset" class="popup__close-btn"></button>
+      </div>
+    </article>
+
+    <article class="popup popup_type_confirmation">
+      <div class="popup__container popup__container_content_confirmation">
+        <h2 class="popup__title">Вы уверены?</h2>
+        <form name="confirm" class="popup__form">
+          <button type="submit" class="popup__submit-btn">Да</button>
+        </form>
+        <button type="reset" class="popup__close-btn"></button>
+      </div>
+    </article>
+
+    <article class="popup popup_type_edit-avatar">
+      <div class="popup__container popup__container_content_edit-avatar">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form name="confirm" class="popup__form">
+          <fieldset class="popup__input-group">
+            <input id="owner-avatar" type="url" name="avatar" class="popup__input popup__input_type_img-link"
+              placeholder="Ссылка на картинку" value="" pattern="https?://.+" required />
+            <span id="owner-avatar-error" class="img-input-error popup__input-error"></span>
+          </fieldset>
+          <button type="submit" class="popup__submit-btn">Сохранить</button>
+        </form>
+        <button type="reset" class="popup__close-btn"></button>
+      </div>
+    </article>
+
+    <article class="popup popup_type_zoom-img">
+      <div class="popup__container popup__container_content_image">
+        <div class="img-wrapper">
+          <img class="popup__img" src="#" alt="">
+          <p class="popup__img-desc"></p>
+          <button type="reset" class="popup__close-btn"></button>
+        </div>
+
+      </div>
+    </article>
 
   </div> <!-- page container ending -->
 
