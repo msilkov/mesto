@@ -1,10 +1,8 @@
-# Проект: Место
-
 ### Обзор
 
 **Проект**
 
-* [Ссылка на проект](https://msilkov.github.io/mesto/)
+* ["Место"](https://msilkov.github.io/mesto/)
 
 **Figma**
 
