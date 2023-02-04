@@ -19,4 +19,5 @@
 9. PixelPerfect
 10. REST API
 
-
+## Демо:
+1. Перейти по ссылке ["Место"](https://msilkov.github.io/mesto/)
