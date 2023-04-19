@@ -9,20 +9,25 @@
 </head>
 
 <body class="page">
-
   <div class="page__content">
-
     <header class="header section section_size_narrow page__header">
       <a href="#" class="logo">
         <img src="<%=require('./images/logo/logo.svg')%>" alt="Место - Россия" class="logo__icon" />
       </a>
     </header>
 
-    <main class="content section">
+    <article class="popup popup_type_infoTooltip">
+      <div class="popup__container">
+        <img class="popup__img popup__icon-infoTooltip" src="<%=require('./images/icons/fail-icon.svg')%>" alt="" />
+        <p class="popup__text">Что-то пошло не так! Попробуйте ещё раз.</p>
+        <button type="reset" class="popup__close-btn"></button>
+      </div>
+    </article>
 
+    <main class="content section">
+      
       <section class="profile section section_size_narrow page__section" aria-label="Секция профиль пользователя">
         <div class="profile__avatar-wrapper">
-
           <img src="<%=require('./images/avatars/avatar-01.jpg')%>" alt="аватарка" class="profile__avatar" />
 
           <div class="profile__avatar-overlay">
@@ -38,12 +43,10 @@
           <p class="profile__desc"></p>
         </div>
         <button type="button" class="profile__add-btn"></button>
-
       </section>
 
       <section class="cards-layout section section_size_narrow page__section" aria-label="Блок с фотокарточками">
       </section>
-
     </main>
 
     <footer class="footer page__footer section section_size_narrow">
@@ -117,13 +120,13 @@
 
     <article class="popup popup_type_zoom-img">
       <div class="popup__container popup__container_content_image">
-        <img class="popup__img" src="#" alt="">
+        <img class="popup__img" src="#" alt="" />
         <p class="popup__img-desc"></p>
         <button type="reset" class="popup__close-btn"></button>
       </div>
     </article>
-
-  </div> <!-- page container ending -->
+  </div>
+  <!-- page container ending -->
 
   <template class="card-template">
     <article class="card">
@@ -138,7 +141,6 @@
       <button type="button" class="card__remove-btn"></button>
     </article>
   </template>
-
 </body>
 
 </html>
